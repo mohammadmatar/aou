@@ -241,10 +241,17 @@
         </div>
     </li>
 
-    <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==40){echo 'is-active-top-nav__1level';}?> f-primary-b">
-        <a href="{{url('/student/register')}}"><i class="fa fa-folder-open b-menu-1level-ico"></i>Register<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
+<li class="b-top-nav__1level f-top-nav__1level <?php if($pg==0){echo 'is-active-top-nav__1level';}?> f-primary-b">
+    <a href=""><i class="fa fa-folder-open b-menu-1level-ico"></i>Register<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
+    <div class="b-top-nav__dropdomn">
+        <ul class="b-top-nav__2level_wrap">
+            <li class="b-top-nav__2level_title f-top-nav__2level_title">Register As</li>
+            <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/student/register')}}"><i class="fa fa-angle-right"></i>Student</a></li>
+            <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/instructor/register')}}"><i class="fa fa-angle-right"></i>Instructor</a></li>
+        </ul>
+    </div>
+</li>
 
-    </li>
     @endif
 
     
@@ -259,7 +266,7 @@
 </header>
 
 
-<div class="modal fade" id="instructor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="instructor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -350,7 +357,7 @@
       
     </div>
   </div>
-</div>
+</div> --}}
 
 @if(count($errors->all()) > 0)
 <br>

@@ -11,12 +11,16 @@ use App\Http\Requests\CourseReqeust;
 class InstructorController extends Controller
 {
 
+    public function register()
+    {
+        $pg = 40;
+        return view('instructor.register', compact(['pg']));
+    }
+
     public function print($id){
         $app=Application::find($id);
         
         return view('instructor.print',compact(['app','pg']));
-
-        
     }
 
     public function my_profile($id){

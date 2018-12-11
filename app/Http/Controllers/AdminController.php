@@ -305,14 +305,16 @@ class AdminController extends Controller
     }
 
     public function check_login(Request $request)
-    {   
-        $remmberme = $request->remmberme==1?true:false;
-        if(auth()->guard('admin')->attempt(['admin_id'=>$request->admin_id,'password'=>$request->password],$remmberme)){
-            return redirect('/');
-        }else{
-            session()->flash('error','please enter valid ID and password');
-            return back()->with(['message'=>'please enter valid ID and password']);
+    {
+
+        $remmberme = $request->remmberme == "on" ? true : false;
+
+        if (!auth()->guard('admin')->attempt(request(['admin_id', 'password'], $remmberme))) {
+            return back()->with(['error' => 'please enter valid ID and password']);
         }
+
+        return redirect('/');
+
     }
 
     public function logout()

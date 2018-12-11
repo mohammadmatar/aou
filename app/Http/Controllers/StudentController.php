@@ -9,10 +9,10 @@ use App\Student;
 use Illuminate\Support\Facades\Hash;
 class StudentController extends Controller
 {
-
+  
     public function register(){
         $pg=40;
-        return view('register',compact(['pg']));
+        return view('student.register',compact(['pg']));
     }
 
      public function my_profile($id){
@@ -95,15 +95,31 @@ public function update_profile(Request $request){
     	return view('student.login',compact(['pg']));
     }
 
-    public function check_login(Request $request)
-    {   
-        $remmberme = $request->remmberme==1?true:false;
-        if(auth()->guard('student')->attempt(['student_id'=>$request->student_id,'password'=>$request->password],$remmberme)){
-            return redirect('/');
-        }else{
-            session()->flash('error','Please enter valid ID and password');
-            return back()->with(['message'=>'please enter valid ID and password']);
+    public function is_confirmed($email)
+    {
+        $student = Student::where('email', $email)->first();
+        if ($student->confirmed != 0) {
+            return true;
         }
+    }
+    public function check_login(Request $request)
+    {
+        $this->validate(request(), [
+            'email' => 'required|email|max:255',
+            'password' => 'required|min:6',
+        ]);
+
+        $remmberme = $request->remmberme == "on" ? true : false;
+        if (!$this->is_confirmed($request->email)) {
+            $email = $request->email;
+            return back()->with(['error' => 'please confirm your email address','email'=>$email]);
+        }
+
+        if (!auth()->guard('student')->attempt(request(['email', 'password'], $remmberme))) {
+            return back()->with(['error' => 'please enter valid ID and password']);
+        }
+       
+        return redirect('/');
     }
 
     public function logout()
