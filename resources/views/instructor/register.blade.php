@@ -56,7 +56,7 @@
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Name</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="name" id="name" class="form-control" />
+                                        <input type="text" required="" name="name" id="name" value="{{ old('name') }}" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="b-form-row">
@@ -75,14 +75,14 @@
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Phone Number</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="phone_number" id="phone_number" class="form-control" />
+                                        <input type="text" required="" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="form-control" />
                                     </div>
                                 </div>
 
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Address</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="address" id="address" class="form-control" />
+                                        <input type="text" required="" name="address" id="address" value="{{ old('address') }}" class="form-control" />
                                     </div>
                                 </div>
 
@@ -97,7 +97,7 @@
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="img">Your CV: </label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="file" name="cv" id="cv" class="btn btn-success btn-file" style=" height: 40px; width: 265px;" />
+                                        <input type="file" name="cv" id="cv" required="" class="btn btn-success btn-file" style=" height: 40px; width: 265px;" />
                                     </div>
                                 </div>
 

@@ -58,7 +58,7 @@
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Name</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="name" id="create_account_email" class="form-control" />
+                                        <input type="text" required="" name="name" id="name" value="{{ old('name') }}" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="b-form-row">
@@ -84,21 +84,21 @@
                               <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Phone Number</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="phone_number" id="phone_number" class="form-control" />
+                                        <input type="text" required="" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="form-control" />
                                     </div>
                                 </div>
                                 
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Address</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="address" id="create_account_email" class="form-control" />
+                                        <input type="text" required="" name="address" value="{{ old('address') }}" id="address" class="form-control" />
                                     </div>
                                 </div>
                                 
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Level</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="level" id="level" class="form-control" />
+                                        <input type="text" required="" name="level" id="level" class="form-control" value="{{ old('level') }}" />
                                     </div>
                                 </div>
 

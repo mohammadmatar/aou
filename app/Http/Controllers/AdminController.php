@@ -187,7 +187,6 @@ class AdminController extends Controller
         $inst->img = $filename;
         $inst->save();
         return back()->with('success', ' Instructor added successfully');
-
     }
 
     public function ed_brn(Request $request)

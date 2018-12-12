@@ -1,8 +1,7 @@
-@extends('layouts.master')
-@section('title')
-Instructors | AOU
+@extends('layouts.master') 
+@section('title') Instructors | AOU
 @endsection
-
+ 
 @section('content')
 
 <div class="j-menu-container"></div>
@@ -15,75 +14,60 @@ Instructors | AOU
   </div>
 </div>
 <div class="l-main-container">
-    <div class="b-breadcrumbs f-breadcrumbs">
-        <div class="container">
-            <ul>
-                <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
-                <li><i class="fa fa-angle-right"></i><span>Instructors</span></li>
-            </ul>
-        </div>
+  <div class="b-breadcrumbs f-breadcrumbs">
+    <div class="container">
+      <ul>
+        <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
+        <li><i class="fa fa-angle-right"></i><span>Instructors</span></li>
+      </ul>
     </div>
-    @if (session()->has('success'))
-    <div class="b-shortcode-example">
-            <div class="b-alert-success f-alert-success">
-              <div class="b-right">
-                <i class="fa fa-times-circle-o"></i>
-              </div>
-              <div class="b-remaining">
-                <i class="fa fa-check-circle-o"></i> {{session()->get('success')}}
-              </div>
-            </div>
-          </div>
-    @endif
-    <div class="row b-shortcode-example">
-    <div class="col-md-8 col-md-offset-2 col-sm-8">
-             <table class="table table-hovered table-bordered table-stripped">
-              <tr>
-                 <th>Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Edit</th>
-                <th>Delete</th>
-              </tr>
-              @foreach($insts as $inst)
-              <tr>
-                <td>
-                  @if(auth()->guard('admin')->user())
-                  <a href="{{url('/ainstructor/profile',['id'=>$inst->id])}}">{{$inst->name}}</a>
-                  @endif
-                  @if(auth()->guard('subadmin')->user())
-                  <a href="{{url('/sinstructor/profile',['id'=>$inst->id])}}">{{$inst->name}}</a>
-                  @endif
-                </td>
-                <td>{{$inst->email}}</td>
-                <td>{{$inst->phone_number}}</td> 
-                <td>
-                  @if(auth()->guard('admin')->user())
-                  <a href="{{url('admin/instedit',['id'=>$inst->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                  @endif
-                  @if(auth()->guard('subadmin')->user())
-                  <a href="{{url('sadmin/instedit',['id'=>$inst->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                  @endif
-                </td>
-                <td>
-                  @if(auth()->guard('admin')->user())
-                  <a href="{{url('admin/delinst',['id'=>$inst->id])}}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
-                  @endif
-                  @if(auth()->guard('subadmin')->user())
-                  <a href="{{url('sadmin/delinst',['id'=>$inst->id])}}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
-                  @endif
-                  </td>
-              </tr>
-              @endforeach
-              
-            </table>
-
-        </div>
+  </div>
+  @if (session()->has('success'))
+  <div class="b-shortcode-example">
+    <div class="b-alert-success f-alert-success">
+      <div class="b-right">
+        <i class="fa fa-times-circle-o"></i>
       </div>
-
+      <div class="b-remaining">
+        <i class="fa fa-check-circle-o"></i> {{session()->get('success')}}
+      </div>
+    </div>
+  </div>
+  @endif
+  @if(count($insts))
+  <div class="row b-shortcode-example">
+    <div class="col-md-8 col-md-offset-2 col-sm-8">
+      <table class="table table-hovered table-bordered table-stripped">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        @foreach($insts as $inst)
+        <tr>
+          @if(auth()->guard('admin')->user())
+          <td> <a href="{{url('/ainstructor/profile',['id'=>$inst->id])}}">{{$inst->name}}</a></td>
+          <td>{{$inst->email}}</td>
+          <td>{{$inst->phone_number}}</td>
+          <td><a href="{{url('admin/instedit',['id'=>$inst->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a></td>
+          <td><a href="{{url('admin/delinst',['id'=>$inst->id])}}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td>
+          @endif @if(auth()->guard('subadmin')->user())
+          <td><a href="{{url('/sinstructor/profile',['id'=>$inst->id])}}">{{$inst->name}}</a></td>
+          <td>{{$inst->email}}</td>
+          <td>{{$inst->phone_number}}</td>
+          <td><a href="{{url('sadmin/instedit',['id'=>$inst->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a></td>
+          <td><a href="{{url('sadmin/delinst',['id'=>$inst->id])}}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td>
+          @endif
+        </tr>
+        @endforeach
+      </table>
+    </div>
+  </div>
+  @else
+  <br>
+    <p style="font-size:20px;text-align:center">There are no Instructors in our Database</p>
+  @endif
 </div>
-</div>
-</div>
-
-
 @endsection
