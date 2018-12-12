@@ -39,16 +39,14 @@ Instructors | AOU
     <div class="col-md-8 col-md-offset-2 col-sm-8">
              <table class="table table-hovered table-bordered table-stripped">
               <tr>
-                <th>Photo</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Summary</th>
+                 <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
                 <th>Edit</th>
                 <th>Delete</th>
               </tr>
               @foreach($insts as $inst)
               <tr>
-                <td><img class="j-data-element" data-animate="fadeInDown" style="height: 100px; width: 100px;" data-retina src="/img/{{$inst->img}}" alt=""/></td>
                 <td>
                   @if(auth()->guard('admin')->user())
                   <a href="{{url('/ainstructor/profile',['id'=>$inst->id])}}">{{$inst->name}}</a>
@@ -57,8 +55,8 @@ Instructors | AOU
                   <a href="{{url('/sinstructor/profile',['id'=>$inst->id])}}">{{$inst->name}}</a>
                   @endif
                 </td>
-                <td>{{$inst->Address}}</td>
-                <td>{{$inst->summary}}</td> 
+                <td>{{$inst->email}}</td>
+                <td>{{$inst->phone_number}}</td> 
                 <td>
                   @if(auth()->guard('admin')->user())
                   <a href="{{url('admin/instedit',['id'=>$inst->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a>

@@ -48,8 +48,8 @@
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Instructor ID</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" value="{{App\Instructor::max('instructor_id')+1}}" required="" name="instructor_id" id="instructor_id"
-                                            readonly="" class="form-control" />
+                                        <input type="text" value="{{App\Sign::max('instructor_id')+1}}" required="" name="instructor_id" id="instructor_id" readonly=""
+                                            class="form-control" />
                                     </div>
                                 </div>
 
@@ -93,7 +93,7 @@
                                         <input type="password" required="" name="password" id="password" class="form-control" />
                                     </div>
                                 </div>
-                                
+
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="img">Your CV: </label>
                                     <div class="b-form-horizontal__input">

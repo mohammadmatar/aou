@@ -37,6 +37,18 @@ Instructor Login | AOU
             </div>
           </div>
     @endif
+    @if (session()->has('status'))
+    <div class="b-shortcode-example">
+        <div class="b-alert-success f-alert-success">
+            <div class="b-right">
+                <i class="fa fa-times-circle-o"></i>
+            </div>
+            <div class="b-remaining">
+                <i class="fa fa-exclamation-triangle"></i> {{session()->get('status')}}
+            </div>
+        </div>
+    </div>
+    @endif
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="b-log-in-form">
