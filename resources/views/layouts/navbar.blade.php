@@ -7,7 +7,7 @@
                     <span class="b-search-box">
               <i class="fa fa-search"  style="padding-top: 35px;"></i>
               <input type="text" name="search" placeholder="by course name"/>
-          </span>
+             </span>
                 </form>
 
             </div>
@@ -45,22 +45,18 @@
                             <ul class="b-top-nav__2level_wrap">
                                 @if(auth()->guard('admin')->user())
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/admin/instructors')}}"><i class="fa fa-angle-right"></i>View All</a></li>
+                                <li class="b-top-nav__2level f-top-nav__1level f-primary"><a href="{{url('/sign/requests')}}"><i class=="fa fa-angle-right"></i>Signs</a></li>
+                                <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/admin/addinst')}}"><i class="fa fa-angle-right"></i>Add New</a></li>
+                                <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/admin/requests')}}"><i class="fa fa-angle-right"></i>Cource Requests</a></li>
                                 @endif @if(auth()->guard('subadmin')->user())
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/sadmin/instructors')}}"><i class="fa fa-angle-right"></i>View All</a></li>
-                                @endif @if(auth()->guard('admin')->user())
-                                <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/admin/addinst')}}"><i class="fa fa-angle-right"></i>Add New</a></li>
-                                @endif @if(auth()->guard('subadmin')->user())
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/sadmin/addinst')}}"><i class="fa fa-angle-right"></i>Add New</a></li>
-                                @endif @if(auth()->guard('admin')->user())
-                                <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/admin/requests')}}"><i class="fa fa-angle-right"></i>Requests</a></li>
-                                @else
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/sadmin/requests')}}"><i class="fa fa-angle-right"></i>Requests</a></li>
                                 @endif
-
                             </ul>
                         </div>
                     </li>
-                    @endif @if(auth()->guard('subadmin')->user()/*||auth()->guard('instructor')->user()*/)
+                    @endif @if(auth()->guard('subadmin')->user())/*||auth()->guard('instructor')->user())*/
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==34){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="#"><i class="fa fa-folder-open b-menu-1level-ico"></i>Students<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                         <div class="b-top-nav__dropdomn">
@@ -69,10 +65,8 @@
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/sadmin/students')}}"><i class="fa fa-angle-right"></i>View All</a></li>
                                 @endif @if(auth()->guard('instructor')->user())
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/instr/students')}}"><i class="fa fa-angle-right"></i>View All</a></li>
-                                @endif @if(auth()->guard('instructor')->user())
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/instructor/enrolls')}}"><i class="fa fa-angle-right"></i>Enrolls</a></li>
                                 @endif
-
                             </ul>
                         </div>
                     </li>
@@ -83,10 +77,10 @@
                             <ul class="b-top-nav__2level_wrap">
                                 @foreach(App\Branch::all() as $branch)
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/branch/courses',['id'=>$branch->id])}}"><i class="fa fa-angle-right"></i>{{$branch->name}}
-                @if(auth()->guard('subadmin')->user()&&$branch->sub_admin_id==auth()->guard('subadmin')->user()->id)
-                [Our Branch]
-                @endif
-                </a></li>
+                                @if(auth()->guard('subadmin')->user()&&$branch->sub_admin_id==auth()->guard('subadmin')->user()->id)
+                                [Our Branch]
+                                @endif
+                                </a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -96,15 +90,13 @@
                         <a href="{{url('/courses/index')}}"><i class="fa fa-folder-open b-menu-1level-ico"></i>Courses<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                     </li>
 
-                    @if(auth()->guard('admin')->user())
-                    <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==14){echo 'is-active-top-nav__1level';}?> f-primary-b">
+                    {{-- @if(auth()->guard('admin')->user()) --}} {{--
+                    <li class="b-top-nav__1level f-top-nav__1level  if($pg==14){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="{{url('/sign/requests')}}"><i class="fa fa-folder-open b-menu-1level-ico"></i>Signs<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
-                    </li>
-                    @endif @if(auth()->guard('admin')->user())
+                    </li> @endif--}} @if(auth()->guard('admin')->user())
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==100){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="{{url('/invoices/all')}}"><i class="fa fa-folder-open b-menu-1level-ico"></i>Invoices<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                     </li>
-                    @endif @if(auth()->guard('admin')->user())
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==13){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="{{url('/admin/messages')}}"><i class="fa fa-folder-open b-menu-1level-ico"></i>Messages<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                     </li>
@@ -112,7 +104,6 @@
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==12){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="{{url('/instructor/enrolls')}}"><i class="fa fa-folder-open b-menu-1level-ico"></i>Enrolls<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                     </li>
-                    @endif @if(auth()->guard('instructor')->user())
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==4){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="{{url('/add/course')}}"><i class="fa fa-folder-open b-menu-1level-ico"></i>Add Course<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                     </li>
@@ -120,7 +111,6 @@
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==6){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="{{url('/contact/aou')}}"><i class="fa fa-folder-open b-menu-1level-ico"></i>Contact<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                     </li>
-                    @endif @if(!auth()->guard('instructor')->user()&&!auth()->guard('subadmin')->user()&&!auth()->guard('admin')->user())
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==5){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="{{url('/about/aou')}}"><i class="fa fa-folder-open b-menu-1level-ico"></i>About<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
 
@@ -147,7 +137,6 @@
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/sadmin/profile',['id'=>auth()->guard('subadmin')->user()->id])}}"><i class="fa fa-angle-right"></i>My Profile</a></li>
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/sadmin/profile')}}"><i class="fa fa-angle-right"></i>Edit Profile</a></li>
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('admin/brnedit1',['id'=>$brn_id])}}"><i class="fa fa-angle-right"></i>Edit My Branch</a></li>
-
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/sadmin/logout')}}"><i class="fa fa-angle-right"></i>Logout</a></li>
                             </ul>
                         </div>
@@ -175,12 +164,11 @@
                             </ul>
                         </div>
                     </li>
-                 {{--    @endif @if(!auth()->guard('instructor')->user()&&!auth()->guard('subadmin')->user()&&!auth()->guard('student')->user()&&!auth()->guard('admin')->user())
+                    {{-- @endif @if(!auth()->guard('instructor')->user()&&!auth()->guard('subadmin')->user()&&!auth()->guard('student')->user()&&!auth()->guard('admin')->user())
                     <li class="b-top-nav__1level f-top-nav__1level f-primary-b">
                         <a href="#" data-toggle="modal" data-target="#instructor"><i class="fa fa-folder-open b-menu-1level-ico"></i>New Instructor<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
 
-                    </li> --}}
-                    @endif @if(!auth()->guard('instructor')->user()&&!auth()->guard('subadmin')->user()&&!auth()->guard('student')->user()&&!auth()->guard('admin')->user())
+                    </li> --}} @endif @if(!auth()->guard('instructor')->user()&&!auth()->guard('subadmin')->user()&&!auth()->guard('student')->user()&&!auth()->guard('admin')->user())
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==0){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="#"><i class="fa fa-folder-open b-menu-1level-ico"></i>Login<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                         <div class="b-top-nav__dropdomn">
@@ -205,111 +193,13 @@
                         </div>
                     </li>
 
-                    @endif
-
-
+                    @endguest
                 </ul>
-
             </nav>
         </div>
     </div>
 </header>
 
-
-{{--
-<div class="modal fade" id="instructor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">New Instructor</h4>
-            </div>
-            <div class="modal-body">
-                <form action="{{url('/sign/instructor')}}" method="post" enctype="multipart/form-data">
-                    {{csrf_field()}}
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="mm" for="instructor_id">ID: </label>
-
-                            <input class="form-control" required="" readonly="" id="mo" value="{{App\Sign::max('instructor_id')+1}}" name="instructor_id"
-                                type="text">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="mm" for="name">Name: </label>
-
-                            <input class="form-control" required="" id="mo" name="name" type="text">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="mm" for="name">Email: </label>
-
-                            <input class="form-control" required="" id="mo" name="email" type="email">
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="mm" for="password">Password: </label>
-
-                            <input class="form-control" required="" id="mo" name="password" type="password">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="mm" for="address">Address: </label>
-
-                            <input class="form-control" required="" id="mo" name="address" type="text">
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="mm" for="img">Photo: </label>
-
-                            <span class="btn btn-success btn-file" style="margin-bottom: 10px;">
-                        <i class="fa fa-image"></i> Choose photo <input type="file" style=" opacity:0; height: 15px; width: 150px;" name="img">
-                    </span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="mm" for="img">Your CV: </label>
-
-                            <span class="btn btn-success btn-file" style="margin-bottom: 10px;">
-                        <i class="fa fa-file"></i> upload CV <input type="file" style=" opacity:0; height: 15px; width: 150px;" name="cv">
-                    </span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="mm" for="summary">Summary: </label>
-
-                            <textarea class="form-control" required="" id="details" rows="4" name="summary"></textarea>
-
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-info">Save</button>
-                        <p class="pull-left">Save this ID and your password and wait the admin to accept. </p>
-                    </div>
-
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div> --}}
 
 @if(count($errors->all()) > 0)
 <br>
