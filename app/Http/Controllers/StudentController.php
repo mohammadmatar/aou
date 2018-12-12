@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\auth;
 use App\Application;
 use App\Student;
+use Mail;
 use Illuminate\Support\Facades\Hash;
 class StudentController extends Controller
 {
@@ -73,27 +74,57 @@ public function update_profile(Request $request){
    
     }
 
-   /* public function update_profile(Request $request){
-        $inst= Instructor::find($request->iid);
-        $inst->name=$request->name;
-        $inst->Address=$request->address;
-        $inst->summary=$request->summary;
-        $inst->password=Hash::make($request->password);
-        $file = $request->file('img');
-        $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img';
-        $file->move($path, $filename);
-        $inst->img=$filename;
-        $inst->update();
-        return back()->with('success',' Profile updated successfully');
-   
-    }*/
+    public function save_std(Request $request)
+    {
+        $validator = $this->validate(request(), [
+            'name' => 'required|string|min:2|max:255',
+            'email' => 'required|email|max:255|unique:students',
+            'password' => 'required|min:6',
+            'phone_number' => 'numeric|min:8',
+        ]);
 
+        if ($validator) {
+            $student = new Student();
+
+            $student->name = $request['name'];
+            $student->student_id = Student::max('student_id') + 1;
+            $student->email = $request['email'];
+            $student->phone_number = $request['phone_number'];
+            $student->address = $request['address'];
+            $student->branch_id = $request['branch_id'];
+            $student->level = $request['level'];
+            $student->password = Hash::make($request['password']);
+            $student->token = str_random(25) . time();
+
+            $student->save();
+
+            Mail::to($student)->send(new Welcome($student));
+
+            return redirect(route('student.login'))->with('status', 'Confirmation email has been send, Please check your email');
+        }
+        return redirect(route('student.login')->with('status', $validator->errors));
+
+    }
 
     public function login(){
         $pg=0;
     	return view('student.login',compact(['pg']));
     }
+
+    public function resendConfirm(Request $request)
+    {
+        $student = new Student();
+        $student = $student->where('email', $request->email)->first();
+
+        if (!is_null($student)) {
+            $student->confirmed = 0;
+            $student->token = str_random(25) . time();
+            $student->save();
+            Mail::to($student)->send(new Welcome($student));
+            return redirect(route('student.login'))->with('status', 'Confirmation email has been send, Please check your email');
+        }
+    }
+
 
     public function is_confirmed($email)
     {
@@ -102,6 +133,7 @@ public function update_profile(Request $request){
             return true;
         }
     }
+
     public function check_login(Request $request)
     {
         $this->validate(request(), [

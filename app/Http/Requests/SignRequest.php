@@ -25,9 +25,8 @@ class SignRequest extends FormRequest
     {
         return [
             //
-                'img'=>'required|image|mimes:jpeg,png,jpg,gif,svg',
+               // 'img'=>'required|image|mimes:jpeg,png,jpg,gif,svg',
                 'cv'=>'required|mimes:pdf',
-                'summary'=>'required|min:10|max:400',
                 'address'=>'required',
                 'name'=>'required|min:6',
                 'password'=>'required|min:6', 

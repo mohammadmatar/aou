@@ -16,12 +16,15 @@ class CreateSignsTable extends Migration
         Schema::create('signs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('instructor_id')->unique();
-            $table->string('img')->default('inst.png'); 
-            $table->text('summary');          
-            $table->String('password');
-            $table->String('name');
-            $table->text('Address');
-            $table->integer('status')->default(0); 
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('phone_number');
+            $table->string('password');
+            $table->text('address');
+            $table->string('cv');
+            $table->boolean('status')->default(0);
+            $table->string('token', 254)->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

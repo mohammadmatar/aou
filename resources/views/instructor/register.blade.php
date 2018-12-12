@@ -48,15 +48,15 @@
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Instructor ID</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" value="{{App\Instructor::max('Instructor_id')+1}}" required="" name="Instructor_id" id="create_account_email" readonly=""
-                                            class="form-control" />
+                                        <input type="text" value="{{App\Instructor::max('instructor_id')+1}}" required="" name="instructor_id" id="instructor_id"
+                                            readonly="" class="form-control" />
                                     </div>
                                 </div>
 
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Name</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="name" id="create_account_email" class="form-control" />
+                                        <input type="text" required="" name="name" id="name" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="b-form-row">
@@ -66,13 +66,12 @@
                                         <input name="email" id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
                                             value="{{ old('email') }}" required> @if($errors->has('email'))
                                         <span class="invalid-feedback">
-                                                                                        <strong>{{ $errors->first('email') }}</strong>
-                                                                                    </span>                                        @endif
+                                          <strong>{{ $errors->first('email') }}</strong>
+                                           </span> @endif
 
                                     </div>
                                 </div>
 
-                 
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Phone Number</label>
                                     <div class="b-form-horizontal__input">
@@ -83,44 +82,24 @@
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Address</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="address" id="create_account_email" class="form-control" />
+                                        <input type="text" required="" name="address" id="address" class="form-control" />
                                     </div>
                                 </div>
-
-                                <div class="b-form-row">
-                                    <label class="b-form-horizontal__label" for="create_account_email">Level</label>
-                                    <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="level" id="level" class="form-control" />
-                                    </div>
-                                </div>
-
-                                <div class="b-form-row">
-                                    <label class="b-form-horizontal__label" for="create_account_email">Branch</label>
-                                    <div class="b-form-horizontal__input b-form-select c-arrow-secondary">
-                                        <select required="" class="j-select" name="branch_id">
-                                                                    @foreach(App\Branch::all() as $branch)
-                                                                        <option value="{{$branch->id}}">{{$branch->name}}</option>
-                                                                    @endforeach
-                                                                    </select>
-                                    </div>
-                                </div>
-
 
 
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Password</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="password" required="" name="password" id="create_account_email" class="form-control" />
+                                        <input type="password" required="" name="password" id="password" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="b-form-row">
+                                    <label class="b-form-horizontal__label" for="img">Your CV: </label>
+                                    <div class="b-form-horizontal__input">
+                                        <input type="file" name="cv" id="cv" class="btn btn-success btn-file" style=" height: 40px; width: 265px;" />
                                     </div>
                                 </div>
 
-                                <div class="b-form-row">
-                                    <label class="b-form-horizontal__label" for="create_account_email">Photo</label>
-                                    <div class="b-form-horizontal__input">
-                                        <input type="file" name="img" id="img" class="btn btn-success btn-file" style=" height: 40px; width: 265px;" />
-                                    </div>
-                                </div>
- 
                                 <div class="b-form-row">
                                     <div class="b-form-horizontal__label"></div>
                                     <div class="b-form-horizontal__input">

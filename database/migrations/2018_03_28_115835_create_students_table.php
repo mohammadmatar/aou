@@ -16,16 +16,15 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('student_id')->unique();
-            //$table->string('img')->default('st.png');
+            $table->string('img')->default('default-user.png');
             $table->string('password');
             $table->String('name');
             $table->integer('level');
             $table->integer('branch_id')->unsigned()->index();
             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->string('email')->unique();
-            $table->string('img')->nullable();
             $table->boolean('confirmed')->default(0);
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->text('address');
             $table->string('token', 254)->nullable();
             $table->rememberToken();

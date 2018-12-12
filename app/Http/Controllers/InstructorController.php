@@ -177,7 +177,7 @@ class InstructorController extends Controller
     	return view('instructor.login',compact(['pg']));
     }
 
-    public function check_login(Request $request)
+  /*   public function check_login(Request $request)
     {   
         $remmberme = $request->remmberme==1?true:false;
         if(auth()->guard('instructor')->attempt(['instructor_id'=>$request->instructor_id,'password'=>$request->password],$remmberme)){
@@ -186,7 +186,36 @@ class InstructorController extends Controller
             session()->flash('error','please enter valid ID and password');
             return back()->with(['message'=>'please enter valid ID and password']);
         }
+    } */
+
+    public function is_confirmed($email)
+    {
+        $instructor = Instructor::where('email', $email)->first();
+        if (!is_null($instructor) && ($instructor->status != 0)) {
+            return true;
+        }
     }
+
+    public function check_login(Request $request)
+    {
+        $this->validate(request(), [
+            'email' => 'required|email|max:255',
+            'password' => 'required|min:6',
+        ]);
+
+        $remmberme = $request->remmberme == "on" ? true : false;
+        if (!$this->is_confirmed($request->email)) {
+             
+            return back()->with(['error' => 'please wait the admin to confirm your account']);
+        }
+
+        if (!auth()->guard('instructor')->attempt(request(['email', 'password'], $remmberme))) {
+            return back()->with(['error' => 'please enter valid Email and password']);
+        }
+
+        return redirect('/');
+    }
+
 
     public function logout()
     {

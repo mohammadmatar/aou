@@ -35,7 +35,7 @@ Route::group(['middleware'=>'guest'],function(){
 	Route::get('student/login', 'StudentController@login')->name('student.login');
 	Route::get('admin/login','AdminController@login');
 	Route::get('sadmin/login','SadminController@login');
-	Route::get('instructor/login','InstructorController@login');
+	Route::get('instructor/login','InstructorController@login')->name('instructor.login');
 	Route::get('student/register','StudentController@register');
 	Route::get('instructor/register', 'InstructorController@register');
 	Route::post('/check/admin','AdminController@check_login');
@@ -43,18 +43,14 @@ Route::group(['middleware'=>'guest'],function(){
 	Route::post('/check/sadmin','SadminController@check_login');
 	Route::post('/check/student','StudentController@check_login');
 	Route::post('/check/instructor','InstructorController@check_login');
-	Route::post('/std/savstd', 'SadminController@save_std');
-
+	Route::post('/std/savstd', 'StudentController@save_std');
+ 
+	Route::get('/site/confirmation/{token}', 'SiteController@confirmation')->name('confirmation');
+	Route::get('/resendConfirm/{email}', 'SiteController@resendConfirm');
 	
 });
 
-//Write it under the student route
-Route::get('/student/confirmation/{token}', 'SadminController@confirmation')->name('confirmation');
-Route::get('/resendConfirm/{email}', 'SadminController@resendConfirm');
-
-
-
-
+ 
 Route::group(['middleware'=>'student:student'],function(){
 Route::any('/student/logout','StudentController@logout');
 Route::get('/student/enrolls', 'StudentController@enrolls');

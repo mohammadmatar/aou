@@ -48,15 +48,15 @@ Instructor Login | AOU
                     <div class="b-form-row b-form-inline b-form-horizontal">
                         <div class="col-xs-12">
                             <div class="b-form-row">
-                                <label class="b-form-horizontal__label" for="create_account_email">Your ID</label>
+                                <label class="b-form-horizontal__label" for="email">Your Email</label>
                                 <div class="b-form-horizontal__input">
-                                    <input type="text" id="create_account_email" required name="instructor_id" class="form-control" />
+                                    <input type="text" id="email" required name="email" class="form-control" />
                                 </div>
                             </div>
                             <div class="b-form-row">
                                 <label class="b-form-horizontal__label" for="create_account_password">Your password</label>
                                 <div class="b-form-horizontal__input">
-                                    <input type="password" id="create_account_password" name="password" required class="form-control" />
+                                    <input type="password" id="password" name="password" required class="form-control" />
                                 </div>
                             </div>
                             <div class="b-form-row">

@@ -27,7 +27,7 @@ class SadminController extends Controller
     {
         $sub = SubAdmin::find($request->aid);
         $sub->name = $request->name;
-        $sub->Address = $request->address;
+        $sub->address = $request->address;
         $sub->password = Hash::make($request->password);
         $file = $request->file('img');
         $filename = time() . '.' . $file->getClientOriginalName();
@@ -182,36 +182,7 @@ class SadminController extends Controller
         return redirect(route('student.login')->with('status', $validator->errors));
 
     }
-
-    public function resendConfirm(Request $request)
-    {
-            $student = new Student();
-            $student = $student->where('email',$request->email)->first();
-          
-            if ($student) {
-            $student->confirmed = 0;
-                $student->token = str_random(25) . time();
-            $student->save();
-                Mail::to($student)->send(new Welcome($student));
-                return redirect(route('student.login'))->with('status', 'Confirmation email has been send, Please check your email');
-            }
-   /*      return redirect(route('student.login')); */
-
-    }
-
-    public function confirmation($token)
-    {
-        $student = Student::where('token', $token)->first();
-
-        if (!is_null($student)) {
-            $student->confirmed = 1;
-            $student->token = '';
-            $student->save();
-            return redirect(route('student.login'))->with('status', 'Your activation is completed.');
-        }
-        return redirect(route('student.login'))->with('status', 'Something went wrong, Maybe the Link is expired');
-    }
-
+ 
     public function del_std($id)
     {
         $sub = Student::find($id)->delete();

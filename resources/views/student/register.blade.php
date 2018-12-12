@@ -36,6 +36,7 @@
             </div>
         </div>
         @endif
+ 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="b-form">
@@ -63,13 +64,13 @@
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Email</label>
                                     <div class="b-form-horizontal__input">
-
+                                
                                         <input name="email" id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
                                             value="{{ old('email') }}" required> @if($errors->has('email'))
                                         <span class="invalid-feedback">
-                                                                                        <strong>{{ $errors->first('email') }}</strong>
-                                                                                    </span>                                        @endif
-
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                        </span> @endif
+                                
                                     </div>
                                 </div>
 
