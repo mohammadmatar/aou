@@ -93,6 +93,7 @@
                                         <input type="password" required="" name="password" id="password" class="form-control" />
                                     </div>
                                 </div>
+                                
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="img">Your CV: </label>
                                     <div class="b-form-horizontal__input">

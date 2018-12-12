@@ -68,8 +68,8 @@ class AdminController extends Controller
     public function edit_inst($id)
     {
         $pg = 28;
-        $inst = Instructor::find($id);
-        return view('admin.edit_instructor', compact(['pg', 'inst']));
+        $instructor = Instructor::find($id);
+        return view('admin.edit_instructor', compact(['pg', 'instructor']));
     }
 
     public function edit_sub($id)
@@ -151,19 +151,25 @@ class AdminController extends Controller
 
     public function ed_inst(Request $request)
     {
-        $inst = Instructor::find($request->sid);
-        $inst->name = $request->name;
-        $inst->Address = $request->address;
-        $inst->summary = $request->summary;
-        $inst->password = Hash::make($request->password);
-        $file = $request->file('img');
-        $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img';
-        $file->move($path, $filename);
-        $inst->img = $filename;
-        $inst->update();
-        return back()->with('success', ' Instructor updated successfully');
+        $instructor = Instructor::find($request->sid);
+        //$instructor = Instructor::where('email', $request->email)->first();
 
+        if ($instructor) {
+           // $instructor->email = $request->email;
+            $instructor->name = $request->name;
+            $instructor->address = $request->address;
+            $instructor->phone_number = $request->phone_number;
+            if (!is_null($request->file('cv'))) {
+                $file = $request->file('cv');
+                $filename = time() . '.' . $file->getClientOriginalName();
+                $path = 'cv';
+                $file->move($path, $filename);
+                $instructor->cv = $filename;
+            }
+            $instructor->update();
+            return back()->with('success', ' Instructor updated successfully');
+        }
+        return back()->with('error', ' Something went wrong');
     }
 
     public function save_inst(Request $request)

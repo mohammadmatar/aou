@@ -63,9 +63,10 @@ class SiteController extends Controller
 
         $validator = $this->validate(request(), [
             'name' => 'required|string|min:2|max:255',
-            'email' => 'required|email|max:255|unique:students',
+            'email' => 'required|email|unique:instructors,email,' . $request->id,
             'password' => 'required|min:6',
             'phone_number' => 'numeric|min:8',
+            'cv' => 'required|mimes:pdf',
         ]);
 
        
