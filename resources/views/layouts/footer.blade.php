@@ -77,7 +77,8 @@
       <div class="col-md-6 col-sm-12 col-xs-12 ">
         <h4 class="f-primary-b">AOU MAP</h4>
          <div id="map" style="height: 100%; text-align: center;">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d579749.6458675086!2d50.11835347211836!3d26.550963593850085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sArab+Open+University+Branches!5e0!3m2!1sen!2seg!4v1523458732729" width="100%" height="100%" frameborder="0" style="border:0; margin: 0" allowfullscreen></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14491.169422553352!2d46.5904584!3d24.7683076!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9212c07ff6514647!2sArab+Open+University!5e0!3m2!1sen!2sjo!4v1544814359974"
+              width="100%" height="100%" frameborder="0" style="border:0; margin: 0" allowfullscreen></iframe>
         </div>
       </div>
     </div>

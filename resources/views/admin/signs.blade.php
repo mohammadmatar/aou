@@ -54,7 +54,7 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="b-tagline-box b-tagline-box--big">
         <div class="f-tagline_description b-tagline_description">
-          <p style="font-size:20px;text-align:center">There are no Instructors in our Database</p>
+          <p style="font-size:20px;text-align:center">There are no Instructors signs requests</p>
         </div>
       </div>
     </div>
