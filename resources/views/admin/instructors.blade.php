@@ -66,8 +66,17 @@
     </div>
   </div>
   @else
-  <br>
-    <p style="font-size:20px;text-align:center">There are no Instructors in our Database</p>
+
+  <div class="row b-shortcode-example">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="b-tagline-box b-tagline-box--big">
+        <div class="f-tagline_description b-tagline_description">
+          <p style="font-size:20px;text-align:center">There are no Instructors in our Database</p>
+        </div>
+      </div>
+    </div>
+  </div>
+    
   @endif
 </div>
 @endsection
