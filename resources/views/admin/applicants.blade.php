@@ -36,7 +36,7 @@ Applicants | AOU
           </div>
     @endif
 
-
+<div class="b-pagination"> {{ $apps->links() }}</div>
     <div class="row b-shortcode-example">
     <div class="col-md-8 col-md-offset-2 col-sm-8">
              <table class="table table-hovered table-bordered table-stripped">
@@ -52,7 +52,7 @@ Applicants | AOU
               </tr>
               @foreach($apps as $app)
               <tr>
-                <td><img class="j-data-element" data-animate="fadeInDown" style="height: 100px; width: 100px;" data-retina src="/img/{{App\Student::find($app->student_id)->img}}" alt=""/></td>
+                <td><img class="j-data-element" data-animate="fadeInDown" style="height: 100px; width: 100px;" data-retina src="/img/students/{{App\Student::find($app->student_id)->img}}" alt=""/></td>
                 <td>
                   <a href="{{url('/sstd/profile',['id'=>App\Student::find($app->student_id)->id])}}">{{App\Student::find($app->student_id)->name}}</a>
                 </td>

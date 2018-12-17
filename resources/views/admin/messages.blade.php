@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.adminMaster')
 @section('title')
 Admin Messages | AOU
 @endsection
@@ -15,16 +15,17 @@ Admin Messages | AOU
   </div>
 </div>
 <div class="l-main-container">
-    <div class="b-breadcrumbs f-breadcrumbs">
+     <div class="b-breadcrumbs f-breadcrumbs">
         <div class="container">
             <ul>
                 <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href=""><i class="fa fa-angle-right"></i>Admin</a></li>
+{{--                 <li><a href=""><i class="fa fa-angle-right"></i>Admin</a></li> --}}
                 <li><i class="fa fa-angle-right"></i><span>Messages</span></li>
             </ul>
         </div>
-    </div>
+    </div> 
     @foreach($contacts as $contact)
+    <div class="b-pagination"> {{ $contacts->links() }}</div>
     <div class="row b-shortcode-example">
           <div class="col-md-8 col-md-offset-2">
               <div class="b-tagline-box b-tagline-box--big">

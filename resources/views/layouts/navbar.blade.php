@@ -1,6 +1,6 @@
 <header>
     <div class="container b-header__box b-relative">
-        <a href="{{url('/')}}" class="b-left b-logo "><img class="color-theme" data-retina src="/img/logo-header-default.png" alt="Logo" /></a>
+        <a href="{{url('/')}}" class="b-left b-logo "><img class="color-theme" data-retina src="/img/arab_open_university_logo.png" style="height:70px;width:70px" alt="Logo" /></a>
         <div class="b-header-r b-right b-header-r--icon">
             <div class="b-header-ico-group f-header-ico-group b-right">
                 <form action="{{url('/courses/search')}}" method="get">
@@ -47,7 +47,7 @@
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/admin/instructors')}}"><i class="fa fa-angle-right"></i>View All</a></li>
                                 <li class="b-top-nav__2level f-top-nav__1level f-primary"><a href="{{url('/sign/requests')}}"><i class=="fa fa-angle-right"></i>Signs</a></li>
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/admin/addinst')}}"><i class="fa fa-angle-right"></i>Add New</a></li>
-                                <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/admin/requests')}}"><i class="fa fa-angle-right"></i>Cource Requests</a></li>
+                                <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/admin/requests')}}"><i class="fa fa-angle-right"></i>Course Requests</a></li>
                                 @endif @if(auth()->guard('subadmin')->user())
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/sadmin/instructors')}}"><i class="fa fa-angle-right"></i>View All</a></li>
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/sadmin/addinst')}}"><i class="fa fa-angle-right"></i>Add New</a></li>
@@ -93,14 +93,14 @@
                     {{-- @if(auth()->guard('admin')->user()) --}} {{--
                     <li class="b-top-nav__1level f-top-nav__1level  if($pg==14){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="{{url('/sign/requests')}}"><i class="fa fa-folder-open b-menu-1level-ico"></i>Signs<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
-                    </li> @endif--}} @if(auth()->guard('admin')->user())
-                    <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==100){echo 'is-active-top-nav__1level';}?> f-primary-b">
+                    </li> @endif--}} {{-- @if(auth()->guard('admin')->user()) --}}
+           {{--          <li class="b-top-nav__1level f-top-nav__1level  if($pg==100){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="{{url('/invoices/all')}}"><i class="fa fa-folder-open b-menu-1level-ico"></i>Invoices<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                     </li>
-                    <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==13){echo 'is-active-top-nav__1level';}?> f-primary-b">
+                    <li class="b-top-nav__1level f-top-nav__1level  if($pg==13){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="{{url('/admin/messages')}}"><i class="fa fa-folder-open b-menu-1level-ico"></i>Messages<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
-                    </li>
-                    @endif @if(auth()->guard('instructor')->user())
+                    </li> --}}
+                    {{-- @endif --}} @if(auth()->guard('instructor')->user())
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==12){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="{{url('/instructor/enrolls')}}"><i class="fa fa-folder-open b-menu-1level-ico"></i>Enrolls<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                     </li>
@@ -153,8 +153,8 @@
                             </ul>
                         </div>
                     </li>
-                    @endif @if(auth()->guard('admin')->user())
-                    <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==0){echo 'is-active-top-nav__1level';}?> f-primary-b">
+                    @endif {{-- @if(auth()->guard('admin')->user())
+                    <li class="b-top-nav__1level f-top-nav__1level if($pg==0){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="#"><i class="fa fa-folder-open b-menu-1level-ico"></i>{{auth()->guard('admin')->user()->name}}<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                         <div class="b-top-nav__dropdomn">
                             <ul class="b-top-nav__2level_wrap">
@@ -163,12 +163,12 @@
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/admin/logout')}}"><i class="fa fa-angle-right"></i>Logout</a></li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
                     {{-- @endif @if(!auth()->guard('instructor')->user()&&!auth()->guard('subadmin')->user()&&!auth()->guard('student')->user()&&!auth()->guard('admin')->user())
                     <li class="b-top-nav__1level f-top-nav__1level f-primary-b">
                         <a href="#" data-toggle="modal" data-target="#instructor"><i class="fa fa-folder-open b-menu-1level-ico"></i>New Instructor<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
 
-                    </li> --}} @endif @if(!auth()->guard('instructor')->user()&&!auth()->guard('subadmin')->user()&&!auth()->guard('student')->user()&&!auth()->guard('admin')->user())
+                    </li> @endif--}} @if(!auth()->guard('instructor')->user()&&!auth()->guard('subadmin')->user()&&!auth()->guard('student')->user()&&!auth()->guard('admin')->user())
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==0){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="#"><i class="fa fa-folder-open b-menu-1level-ico"></i>Login<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                         <div class="b-top-nav__dropdomn">

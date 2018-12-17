@@ -1,5 +1,5 @@
  
-@extends('layouts.master') 
+@extends('layouts.adminMaster') 
  
   
 @section('title') Instructor Profile | AOU
@@ -17,22 +17,22 @@
   </div>
 </div>
 <div class="l-main-container">
-  <div class="b-breadcrumbs f-breadcrumbs">
+   <div class="b-breadcrumbs f-breadcrumbs">
     <div class="container">
       <ul>
         <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
-        <li><a href=""><i class="fa fa-angle-right"></i>Instructor</a></li>
+        <li><a href="/admin/instructors"><i class="fa fa-angle-right"></i>Instructor</a></li>
         <li><i class="fa fa-angle-right"></i><span>Profile</span></li>
       </ul>
     </div>
-  </div>
+  </div> 
   <div class="row b-shortcode-example">
 
     <div class="col-md-6 col-md-offset-3 col-sm-6">
       <div class="b-shortcode-example f-center">
         <div class="b-mention-item b-mention-item--vertically">
           <div class="b-mention-item__user_img" style="height: 120px; width: 120px;">
-            <img class="fade-in-animate" data-retina src="/img/instructors/{{$profile->img}}" alt="">
+            <img {{-- class="fade-in-animate" --}} data-retina src="/img/instructors/{{$profile->img}}" alt="">
           </div>
           <div class="b-mention-item__comment"  >
             <div class="b-mention-item__user_info f-mention-item__user_info">

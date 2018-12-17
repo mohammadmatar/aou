@@ -1,4 +1,4 @@
-@extends('layouts.master') 
+@extends('layouts.adminMaster') 
 @section('title') Instructors | AOU
 @endsection
  
@@ -13,7 +13,7 @@
     </div>
   </div>
 </div>
-<div class="l-main-container">
+ <div class="l-main-container">
   <div class="b-breadcrumbs f-breadcrumbs">
     <div class="container">
       <ul>
@@ -21,7 +21,8 @@
         <li><i class="fa fa-angle-right"></i><span>Instructors</span></li>
       </ul>
     </div>
-  </div>
+  </div> 
+ <hr>
   @if (session()->has('success'))
   <div class="b-shortcode-example">
     <div class="b-alert-success f-alert-success">
@@ -35,6 +36,7 @@
   </div>
   @endif
   @if(count($insts))
+  <div class="b-pagination"> {{ $insts->links() }}</div>
   <div class="row b-shortcode-example">
     <div class="col-md-8 col-md-offset-2 col-sm-8">
       <table class="table table-hovered table-bordered table-stripped">
@@ -45,6 +47,7 @@
           <th>Edit</th>
           <th>Delete</th>
         </tr>
+      
         @foreach($insts as $inst)
         <tr>
           @if(auth()->guard('admin')->user())

@@ -83,7 +83,7 @@ class SiteController extends Controller
             $sign->status = 0;
             $file = $request->file('cv');
             $filename = time() . '.' . $file->getClientOriginalName();
-            $path = 'uploads';
+            $path = 'uploads/cv';
             $file->move($path, $filename);
             $sign->cv = $filename;
             $sign->save();

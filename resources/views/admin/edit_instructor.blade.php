@@ -1,4 +1,4 @@
-@extends('layouts.master') 
+@extends('layouts.adminMaster') 
 @section('title') Edit Instructor | AOU
 @endsection
  
@@ -19,6 +19,7 @@
         <div class="container">
             <ul>
                 <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="/admin/instructors"><i class="fa fa-angle-right"></i>Instructor</a></li>
                 <li><i class="fa fa-angle-right"></i><span>Edit Instructor</span></li>
             </ul>
         </div>

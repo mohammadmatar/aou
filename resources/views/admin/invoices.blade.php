@@ -1,4 +1,4 @@
-@extends('layouts.master') 
+@extends('layouts.adminMaster') 
 @section('title') Invoices | AOU
 @endsection
  
@@ -14,20 +14,20 @@
     </div>
 </div>
 <div class="l-main-container">
-    <div class="b-breadcrumbs f-breadcrumbs">
+      <div class="b-breadcrumbs f-breadcrumbs">
         <div class="container">
             <ul>
                 <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href=""><i class="fa fa-angle-right"></i>Admin</a></li>
+                {{-- <li><a href=""><i class="fa fa-angle-right"></i>Admin</a></li> --}}
                 <li><i class="fa fa-angle-right"></i><span>Invoices</span></li>
             </ul>
         </div>
-    </div>
-    <?php $apps=App\Application::all();?>
+    </div>  
+    <?php $apps=App\Application::paginate(10);?>
     @if($apps->isNotEmpty()) @foreach($apps as $app)
+    <div class="b-pagination"> {{ $apps->links() }}</div>
     <div class="row b-shortcode-example">
         <div class="col-md-8 col-md-offset-2">
-
 
             <div class="b-tagline-box b-tagline-box--big">
                 <center><img src="/img/{{$app->inv_img}}" style="height: 150px; width: 200px;"></center>

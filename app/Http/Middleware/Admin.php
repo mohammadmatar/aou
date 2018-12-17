@@ -17,7 +17,7 @@ class Admin
     {
         if (Auth::guard($guard)->check()) {
             return $next($request);
-                return('/');
+                return redirect(route('admin_dashboard'));
         }else {
             return redirect('/admin/login');
         }

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.adminMaster')
 @section('title')
 Add Sub Admin | AOU
 @endsection
@@ -40,8 +40,8 @@ Add Sub Admin | AOU
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="b-form">
-                    <div class="f-primary-l f-title-big c-secondary">Add Sub Admin</div>
-                    <hr class="b-hr" />
+                  {{--   <div class="f-primary-l f-title-big c-secondary">Add Sub Admin</div>
+                    <hr class="b-hr" /> --}}
                     <form action="{{url('/admin/savsub')}}" method="post" enctype="multipart/form-data">
                       {{csrf_field()}}
                     <div class="b-form-row b-form-inline b-form-horizontal">

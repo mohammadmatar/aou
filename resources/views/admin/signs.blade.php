@@ -1,4 +1,4 @@
-@extends('layouts.master') 
+@extends('layouts.adminMaster')
 @section('title') Instructor Sign | AOU
 @endsection
  
@@ -9,21 +9,23 @@
 <div class="b-inner-page-header f-inner-page-header b-bg-header-inner-page">
   <div class="b-inner-page-header__content">
     <div class="container">
-      <h1 class="f-primary-l c-default">Signs</h1>
+      <h1 class="f-primary-l c-default">Signs Requests</h1>
     </div>
   </div>
 </div>
-<div class="l-main-container">
+  <div class="l-main-container">
   <div class="b-breadcrumbs f-breadcrumbs">
     <div class="container">
       <ul>
         <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
-        <li><a href=""><i class="fa fa-angle-right"></i>Sign</a></li>
-        <li><i class="fa fa-angle-right"></i><span>Requests</span></li>
+{{--         <li><a href=""><i class="fa fa-angle-right"></i>Sign</a></li> --}}
+        <li><i class="fa fa-angle-right"></i><span>Signs Requests</span></li>
       </ul>
     </div>
-  </div>
+  </div>  
+  <hr>
   @if(count($reqs))
+  <div class="b-pagination"> {{ $reqs->links() }}</div>
   <div class="row b-shortcode-example">
     @foreach($reqs as $req)
     <div class="col-md-6 col-md-offset-3 col-sm-6">

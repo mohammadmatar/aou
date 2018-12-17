@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.adminMaster')
 @section('title')
 Sub Admin Profile | AOU
 @endsection
@@ -19,7 +19,7 @@ Sub Admin Profile | AOU
         <div class="container">
             <ul>
                 <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href=""><i class="fa fa-angle-right"></i>Sub Admin</a></li>
+                <li><a href="{{url('/admin/sub')}}"><i class="fa fa-angle-right"></i>Sub Admin</a></li>
                 <li><i class="fa fa-angle-right"></i><span>Profile</span></li>
             </ul>
         </div>
@@ -30,7 +30,7 @@ Sub Admin Profile | AOU
           <div class="b-shortcode-example f-center">
             <div class="b-mention-item b-mention-item--vertically">
               <div class="b-mention-item__user_img" style="height: 120px; width: 120px;">
-                <img  class="fade-in-animate" data-retina src="/sub_admins/{{$sub->img}}" alt="">
+                <img {{--  class="fade-in-animate" --}} data-retina src="/sub_admins/{{$sub->img}}" alt="">
               </div>
               <div class="b-mention-item__comment">
                 <div class="b-mention-item__user_info f-mention-item__user_info">

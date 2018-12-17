@@ -66,7 +66,7 @@ public function update_profile(Request $request){
         $std->password=Hash::make($request->password);
         $file = $request->file('img');
         $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img';
+        $path = 'img/students';
         $file->move($path, $filename);
         $std->img=$filename;
         $std->update();
@@ -212,7 +212,7 @@ public function update_profile(Request $request){
             $app->bank_name=$request->bank_name;
             $file = $request->file('inv_img');
             $filename = time() . '.' . $file->getClientOriginalName();
-            $path = 'img';
+            $path = 'img/invoices';
             $file->move($path, $filename);
             $app->inv_img=$filename;
             $app->save();

@@ -62,7 +62,7 @@ class InstructorController extends Controller
            if (!is_null($request->file('cv'))) {
                 $file = $request->file('cv');
                 $filename = time() . '.' . $file->getClientOriginalName();
-                $path = 'cv';
+                $path = 'uploads/cv';
                 $file->move($path, $filename);
                 $instructor->cv = $filename;
             } 
@@ -107,7 +107,7 @@ class InstructorController extends Controller
         $course->seats = $request->seats;
         $file = $request->file('img');
         $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img';
+        $path = 'img/courses';
         $file->move($path, $filename);
         $course->img = $filename;
         $course->update();
@@ -133,7 +133,7 @@ class InstructorController extends Controller
         $course->status = 0;
         $file = $request->file('img');
         $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img';
+        $path = 'img/courses';
         $file->move($path, $filename);
         $course->img = $filename;
         if ($course->save()) {

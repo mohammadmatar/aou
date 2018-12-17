@@ -31,7 +31,7 @@ class SadminController extends Controller
         $sub->password = Hash::make($request->password);
         $file = $request->file('img');
         $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'sub_admins';
+        $path = 'img/sub_admins';
         $file->move($path, $filename);
         $sub->img = $filename;
         $sub->update();
@@ -142,7 +142,7 @@ class SadminController extends Controller
         $std->password = Hash::make($request->password);
         $file = $request->file('img');
         $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img';
+        $path = 'img/students';
         $file->move($path, $filename);
         $std->img = $filename;
         $std->update();

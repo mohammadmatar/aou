@@ -17,31 +17,33 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    public function index()
+    {
+        return view('admin.dashboard');
+    }
 
     public function invoices()
     {
         $pg = 100;
-
         return view('admin.invoices', compact(['pg']));
-
     }
 
     public function admin_requests()
     {
-        $reqs = Arequest::where('admin_status', '=', '0')->get();
+        $reqs = Arequest::where('admin_status', '=', '0')->paginate(5);
         $pg = 3;
         return view('admin.requests', compact(['pg', 'reqs']));
     }
     public function admin_branches()
     {
-        $branches = Branch::all();
+        $branches = Branch::paginate(5);
         $pg = 25;
         return view('admin.branches', compact(['pg', 'branches']));
     }
 
     public function admin_instructors()
     {
-        $insts = Instructor::all();
+        $insts = Instructor::paginate(5);
         $pg = 28;
         return view('admin.instructors', compact(['pg', 'insts']));
     }
@@ -72,6 +74,13 @@ class AdminController extends Controller
         return view('admin.edit_instructor', compact(['pg', 'instructor']));
     }
 
+    public function show_instructor($id)
+    {
+        $pg = 38;
+        $profile = Instructor::find($id);
+        return view('admin.inst_profile', compact(['profile', 'pg']));
+    }
+
     public function edit_sub($id)
     {
         $pg = 26;
@@ -88,7 +97,7 @@ class AdminController extends Controller
     public function applicants($id)
     {
         $pg = 26;
-        $apps = Application::where('course_id', '=', $id)->get();
+        $apps = Application::where('course_id', '=', $id)->paginate(5);;
         return view('admin.applicants', compact(['pg', 'apps']));
     }
 
@@ -115,7 +124,7 @@ class AdminController extends Controller
         $sub->sub_admin_id = SubAdmin::max('sub_admin_id') + 1;
         $file = $request->file('img');
         $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'sub_admins';
+        $path = 'img/sub_admins';
         $file->move($path, $filename);
         $sub->img = $filename;
         $sub->save();
@@ -141,7 +150,7 @@ class AdminController extends Controller
         $sub->password = Hash::make($request->password);
         $file = $request->file('img');
         $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'sub_admins';
+        $path = 'img/sub_admins';
         $file->move($path, $filename);
         $sub->img = $filename;
         $sub->update();
@@ -155,14 +164,14 @@ class AdminController extends Controller
         //$instructor = Instructor::where('email', $request->email)->first();
 
         if ($instructor) {
-           // $instructor->email = $request->email;
+            // $instructor->email = $request->email;
             $instructor->name = $request->name;
             $instructor->address = $request->address;
             $instructor->phone_number = $request->phone_number;
             if (!is_null($request->file('cv'))) {
                 $file = $request->file('cv');
                 $filename = time() . '.' . $file->getClientOriginalName();
-                $path = 'cv';
+                $path = 'uploads/cv';
                 $file->move($path, $filename);
                 $instructor->cv = $filename;
             }
@@ -182,7 +191,7 @@ class AdminController extends Controller
         $inst->instructor_id = Instructor::max('instructor_id') + 1;
         $file = $request->file('img');
         $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img';
+        $path = 'img/instructors';
         $file->move($path, $filename);
         $inst->img = $filename;
         $inst->save();
@@ -209,7 +218,7 @@ class AdminController extends Controller
         $admin->password = Hash::make($request->password);
         $file = $request->file('img');
         $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img';
+        $path = 'img/admins';
         $file->move($path, $filename);
         $admin->img = $filename;
         $admin->update();
@@ -257,14 +266,14 @@ class AdminController extends Controller
 
     public function admin_sub_admins()
     {
-        $subs = SubAdmin::all();
+        $subs = SubAdmin::paginate(5);
         $pg = 26;
         return view('admin.sub_admins', compact(['pg', 'subs']));
     }
 
     public function signs()
     {
-        $reqs = Sign::where('status', '=', '0')->get();
+        $reqs = Sign::where('status', '=', '0')->paginate(5);
         $pg = 14;
         return view('admin.signs', compact(['pg', 'reqs']));
     }
@@ -277,7 +286,8 @@ class AdminController extends Controller
 
     public function messages()
     {
-        $contacts = Contact::all();
+        $contacts = Contact::paginate(5);
+
         $pg = 13;
         return view('admin.messages', compact(['contacts', 'pg']));
 
@@ -313,7 +323,6 @@ class AdminController extends Controller
         $sign->save();
         $instructor->save();
         return back();
-
     }
 
     public function refuse_sign($id)
@@ -324,6 +333,8 @@ class AdminController extends Controller
         return back();
     }
 
+
+
     public function check_login(Request $request)
     {
 
@@ -333,10 +344,11 @@ class AdminController extends Controller
             return back()->with(['error' => 'please enter valid ID and password']);
         }
 
-        return redirect('/');
+        return view('admin.dashboard');
 
     }
 
+ 
     public function logout()
     {
         auth()->guard('admin')->logout();

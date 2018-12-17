@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.adminMaster')
 @section('title')
 Admin Requests | AOU
 @endsection
@@ -10,22 +10,24 @@ Admin Requests | AOU
 <div class="b-inner-page-header f-inner-page-header b-bg-header-inner-page">
   <div class="b-inner-page-header__content">
     <div class="container">
-      <h1 class="f-primary-l c-default">Requests</h1>
+      <h1 class="f-primary-l c-default">Cource Requests</h1>
     </div>
   </div>
 </div>
-<div class="l-main-container">
+  <div class="l-main-container">
     <div class="b-breadcrumbs f-breadcrumbs">
         <div class="container">
             <ul>
                 <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href=""><i class="fa fa-angle-right"></i>Admin</a></li>
+                {{-- <li><a href=""><i class="fa fa-angle-right"></i>Admin</a></li> --}}
                 <li><i class="fa fa-angle-right"></i><span>Requests</span></li>
             </ul>
         </div>
-    </div>
+    </div>  
+    <hr>
     @foreach($reqs as $req)
     <?php $course=App\Course::find($req->course_id); ?>
+    <div class="b-pagination"> {{ $reqs->links() }}</div>
     <div class="row b-shortcode-example">
           <div class="col-md-8 col-md-offset-2">
               <div class="b-tagline-box b-tagline-box--big">

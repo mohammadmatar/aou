@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.adminMaster')
 @section('title')
 Edit Sub Admin | AOU
 @endsection
@@ -8,18 +8,19 @@ Edit Sub Admin | AOU
 
 <div class="j-menu-container"></div>
 
-<div class="b-inner-page-header f-inner-page-header b-bg-header-inner-page">
+ <div class="b-inner-page-header f-inner-page-header b-bg-header-inner-page">
   <div class="b-inner-page-header__content">
     <div class="container">
       <h1 class="f-primary-l c-default">Edit Sub Admin</h1>
     </div>
   </div>
-</div>
+</div>  
 <div class="l-main-container">
     <div class="b-breadcrumbs f-breadcrumbs">
         <div class="container">
             <ul>
                 <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="{{url('/admin/sub')}}"><i class="fa fa-angle-right"></i><span>Sub Admins</span></a></li>
                 <li><i class="fa fa-angle-right"></i><span>Edit Sub Admin</span></li>
             </ul>
         </div>
@@ -40,8 +41,8 @@ Edit Sub Admin | AOU
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="b-form">
-                    <div class="f-primary-l f-title-big c-secondary">Edit Sub Admin</div>
-                    <hr class="b-hr" />
+                   {{--  <div class="f-primary-l f-title-big c-secondary">Edit Sub Admin</div>
+                    <hr class="b-hr" /> --}}
                     <form action="{{url('/admin/editsub')}}" method="post" enctype="multipart/form-data">
                       {{csrf_field()}}
                     <div class="b-form-row b-form-inline b-form-horizontal">

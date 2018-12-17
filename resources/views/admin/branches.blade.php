@@ -35,6 +35,7 @@ Branches | AOU
             </div>
           </div>
     @endif
+    <div class="b-pagination"> {{ $branches->links() }}</div>
     <div class="row b-shortcode-example">
     <div class="col-md-8 col-md-offset-2 col-sm-8">
              <table class="table table-hovered table-bordered">

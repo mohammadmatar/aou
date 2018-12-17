@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.adminMaster')
 @section('title')
 Sub Admins | AOU
 @endsection
@@ -35,11 +35,12 @@ Sub Admins | AOU
             </div>
           </div>
     @endif
+    <div class="b-pagination"> {{ $subs->links() }}</div>
     <div class="row b-shortcode-example">
     <div class="col-md-8 col-md-offset-2 col-sm-8">
              <table class="table table-hovered table-bordered">
               <tr>
-                <th>Photo</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>Branch</th>
@@ -48,7 +49,8 @@ Sub Admins | AOU
               </tr>
               @foreach($subs as $sub)
               <tr>
-                <td><img class="j-data-element" data-animate="fadeInDown" style="height: 100px; width: 100px;" data-retina src="/sub_admins/{{$sub->img}}" alt=""/></td>
+{{--                 <td><img class="j-data-element" {{-- data-animate="fadeInDown"  style="height: 100px; width: 100px;" data-retina src="/sub_admins/{{$sub->img}}" alt=""/></td> --}}
+                <td>{{$sub->id}}</td>
                 <td><a href="{{url('/sub/profile',['id'=>$sub->id])}}">{{$sub->name}}</a></td>
                 <td>{{$sub->Address}}</td>
                 <td>@if(!empty(App\Branch::where('sub_admin_id',$sub->id)->first()->name))
