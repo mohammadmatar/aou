@@ -46,7 +46,7 @@
               <div class="b-mention-item__comment_text f-mention-item__comment_text">
                 Address: {{$profile->address}}
               </div>
-               <a href="{{url('/cv',['cv'=>$profile->cv])}}" class="button-sm button-turquoise-bright"><i class="fa fa-file"></i> Download CV</a>
+               <a href="{{url('/uploads/cv',['cv'=>$profile->cv])}}" class="button-sm button-turquoise-bright"><i class="fa fa-file"></i> Download CV</a>
             </div>
 
           </div>
