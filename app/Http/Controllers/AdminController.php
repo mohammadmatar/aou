@@ -273,7 +273,7 @@ class AdminController extends Controller
 
     public function signs()
     {
-        $reqs = Sign::where('status', '=', '0')->paginate(5);
+        $reqs = Sign::where('status', '=', '0')->paginate(4);
         $pg = 14;
         return view('admin.signs', compact(['pg', 'reqs']));
     }

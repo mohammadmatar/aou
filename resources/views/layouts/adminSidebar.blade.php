@@ -96,28 +96,25 @@
                                       Managers
                                     </a>
                     </li>
+ 
                     <li class="nav-item">
                         <ul class="list-unstyled components" style="padding-left:15px;display: block; padding: .5rem 1rem;">
 
                             <li class="nav-item">
                                 <a href="#reports" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                                                <span data-feather="bar-chart-2"></span>Reports</a>
+                                                <span data-feather="bar-chart-2"></span>Branches</a>
                                 <ul class="collapse list-unstyled" id="reports">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{-- {{route( 'balance.enquiry.page')}} --}}">
-                                                                <span data-feather="file-minus"></span>Balance Enquiry
+                                        <a class="nav-link" href="{{url('/admin/branches')}}">
+                                                                <span data-feather="file-text"></span>View All
                                                             </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{-- {{route( 'mini.statement.page')}} --}}">
-                                                               <span data-feather="file-plus"></span>Mini Statement
+                                        <a class="nav-link" href="{{url('/admin/addbrn')}}">
+                                                               <span data-feather="file-plus"></span>Add New Branch
                                                             </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{-- {{route( 'customized.statement.page')}} --}}">
-                                                               <span data-feather="file-text"></span>Customized Statement
-                                                            </a>
-                                    </li>
+                                   
 
                                 </ul>
                             </li>

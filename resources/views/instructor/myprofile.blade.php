@@ -1,7 +1,4 @@
- 
 @extends('layouts.master') 
- 
-  
 @section('title') Instructor Profile | AOU
 @endsection
  
@@ -34,23 +31,22 @@
           <div class="b-mention-item__user_img" style="height: 120px; width: 120px;">
             <img class="fade-in-animate" data-retina src="/img/instructors/{{$profile->img}}" alt="">
           </div>
-          <div class="b-mention-item__comment"  >
+          <div class="b-mention-item__comment">
             <div class="b-mention-item__user_info f-mention-item__user_info">
-         {{--      <div class="b-mention-item__comment_text f-mention-item__comment_text">
+              {{--
+              <div class="b-mention-item__comment_text f-mention-item__comment_text">
                 ID: {{$profile->instructor_id}}
-              </div>  --}} 
+              </div> --}}
               <div class="f-mention-item__user_name f-primary-b">Name : {{$profile->name}}</div>
               <div class="b-mention-item__comment_text f-mention-item__comment_text">Email : {{$profile->email}}</div>
-             
+
               <div class="b-mention-item__comment_text f-mention-item__comment_text">Phone Number : {{$profile->phone_number}}</div>
               <div class="b-mention-item__comment_text f-mention-item__comment_text">
                 Address: {{$profile->address}}
               </div>
-               <a href="{{url('/uploads/cv',['cv'=>$profile->cv])}}" class="button-sm button-turquoise-bright"><i class="fa fa-file"></i> Download CV</a>
+              <a href="{{url('/uploads/cv',['cv'=>$profile->cv])}}" class="button-sm button-turquoise-bright"><i class="fa fa-file"></i> Download CV</a>
             </div>
-
           </div>
-
         </div>
       </div>
     </div>
