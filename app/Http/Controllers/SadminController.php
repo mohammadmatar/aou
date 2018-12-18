@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Mail;
 class SadminController extends Controller
 {
 
+    public function index()
+    {
+        return view('sub_admin.dashboard');
+    }
+
     public function edit_brn($id)
     {
         $pg = 45;
@@ -107,7 +112,7 @@ class SadminController extends Controller
 
     public function sadmin_students()
     {
-        $stds = Student::all();
+        $stds = Student::paginate(5);
         $pg = 34;
         return view('sub_admin.students', compact(['pg', 'stds']));
     }

@@ -56,7 +56,7 @@
                             </ul>
                         </div>
                     </li>
-                    @endif @if(auth()->guard('subadmin')->user())/*||auth()->guard('instructor')->user())*/
+                    @endif @if(auth()->guard('subadmin')->user()) {{--||auth()->guard('instructor')->user())--}}
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==34){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="#"><i class="fa fa-folder-open b-menu-1level-ico"></i>Students<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                         <div class="b-top-nav__dropdomn">

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.subAdminMaster')
 @section('title')
 Student Profile | AOU
 @endsection

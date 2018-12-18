@@ -8,8 +8,8 @@ use App\Field;
 use App\Http\Requests\SignRequest;
 use App\Instructor;
 use App\Sign;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SiteController extends Controller
 {
@@ -23,8 +23,11 @@ class SiteController extends Controller
     public function search_courses(Request $request)
     {
         $pg = 15;
-        $courses = Course::where('name', 'like', '%' . $request->search . '%')->get();
-        return view('search', compact(['pg', 'courses']));
+        $courses = Course::where('name', 'like', '%' . $request->search . '%')->paginate(6);
+        if (!is_null($courses)) {
+            return view('search', compact(['pg', 'courses']));
+        }
+        return back()->with(['error', 'There are no courses available baised on your inputs']);
     }
 
     public function course_details($id)
@@ -69,9 +72,8 @@ class SiteController extends Controller
             'cv' => 'required|mimes:pdf',
         ]);
 
-       
         if ($validator) {
- 
+
             $sign = new Sign();
             $sign->name = $request->name;
             $sign->instructor_id = $request->instructor_id;
@@ -107,7 +109,7 @@ class SiteController extends Controller
         }
         return redirect(route('student.login'))->with('status', 'Something went wrong, Maybe the Link is expired');
 
-       }
+    }
 
     public function resendConfirm(Request $request)
     {
@@ -123,8 +125,6 @@ class SiteController extends Controller
         }
 
     }
-
-   
 
     public function branch_courses($id)
     {

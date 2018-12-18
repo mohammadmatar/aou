@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.subAdminMaster')
 @section('title')
 Edit Branch | AOU
 @endsection

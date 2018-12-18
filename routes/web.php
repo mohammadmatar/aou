@@ -98,7 +98,8 @@ Route::group(['middleware' => 'admin:admin'], function () {
 });
 
 Route::group(['middleware' => 'sadmin:subadmin'], function () {
-    Route::any('/sadmin/logout', 'SadminController@logout');
+    Route::get('/', 'SadminController@index')->name('sub_admin_dashboard');
+    Route::any('/sadmin/logout', 'SadminController@logout')->name('Sadmin.logout');
     Route::get('/sadmin/requests', 'SadminController@sadmin_requests');
     Route::get('/sadmin/accept/{id}', 'SadminController@accept');
     Route::get('/sadmin/refuse/{id}', 'SadminController@refuse');
