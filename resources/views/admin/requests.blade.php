@@ -24,40 +24,40 @@
             </ul>
         </div>
     </div>
-</div>
 
-@if(!is_null(($reqs))
-<div class="b-pagination"> {{ $reqs->links() }}</div>
-@foreach($reqs as $req)
+    @if(count($reqs))
+    <div class="b-pagination"> {{ $reqs->links() }}</div>
+    @foreach($reqs as $req)
 
-<?php $course=App\Course::find($req->course_id); ?>
-<div class="row b-shortcode-example">
-    <div class="col-md-8 col-md-offset-2">
-        <div class="b-tagline-box b-tagline-box--big">
-            <div class="b-tagline_title f-tagline_title f-primary-l">{{$course->instructor->name}}</div>
-            <div class="b-tagline_title f-tagline_title f-primary-l">{{$course->branch->name}} Branch</div>
-            <div class="b-tagline_btn f-center b-tagline_btn--right">
-                <a href="{{url('admin/accept',['id'=>$req->id])}}" class="button-sm button-green-bright"><i class="fa fa-check"></i></a>
-            </div>
-            <div class="b-tagline_btn f-center b-tagline_btn--right">
-                <a href="{{url('admin/refuse',['id'=>$req->id])}}" class="button-sm button-red"><i class="fa fa-ban"></i></a>
-            </div>
-            <div class="f-tagline_description b-tagline_description">
-                {{$course->summary}}
-            </div>
+    <?php $course=App\Course::find($req->course_id); ?>
+    <div class="row b-shortcode-example">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="b-tagline-box b-tagline-box--big">
+                <div class="b-tagline_title f-tagline_title f-primary-l">{{$course->instructor->name}}</div>
+                <div class="b-tagline_title f-tagline_title f-primary-l">{{$course->branch->name}} Branch</div>
+                <div class="b-tagline_btn f-center b-tagline_btn--right">
+                    <a href="{{url('admin/accept',['id'=>$req->id])}}" class="button-sm button-green-bright"><i class="fa fa-check"></i></a>
+                </div>
+                <div class="b-tagline_btn f-center b-tagline_btn--right">
+                    <a href="{{url('admin/refuse',['id'=>$req->id])}}" class="button-sm button-red"><i class="fa fa-ban"></i></a>
+                </div>
+                <div class="f-tagline_description b-tagline_description">
+                    {{$course->summary}}
+                </div>
 
-        </div>
-    </div>
-</div>
-@endforeach @else
-<div class="row b-shortcode-example">
-    <div class="col-md-8 col-md-offset-2">
-        <div class="b-tagline-box b-tagline-box--big">
-            <div class="f-tagline_description b-tagline_description">
-                <p style="font-size:20px;text-align:center">There are no courses requests</p>
             </div>
         </div>
     </div>
+    @endforeach @else
+    <div class="row b-shortcode-example">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="b-tagline-box b-tagline-box--big">
+                <div class="f-tagline_description b-tagline_description">
+                    <p style="font-size:20px;text-align:center">There are no courses requests</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
-@endif
 @endsection

@@ -4,43 +4,55 @@ namespace App\Http\Controllers;
 
 use App\Branch;
 use App\Course;
+use App\Instructor;
+use App\Mail\Welcome;
 use App\Request as Srequest;
 use App\Student;
 use App\SubAdmin;
-use App\Mail\Welcome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class SadminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:subadmin', ['except' => ['logout', 'login', 'check_login']]);
+    }
 
     public function index()
     {
         return view('sub_admin.dashboard');
     }
 
-    public function edit_brn($id)
+    /* public function edit_brn($id)
     {
-        $pg = 45;
-        $brn = Branch::find($id);
-        //dd($brn);
-        return view('sub_admin.edit_branch', compact(['pg', 'brn']));
-    }
+    $pg = 45;
+    $brn = Branch::find($id);
+    //dd($brn);
+    return view('sub_admin.edit_branch', compact(['pg', 'brn']));
+    } */
 
     public function update_profile(Request $request)
     {
-        $sub = SubAdmin::find($request->aid);
-        $sub->name = $request->name;
-        $sub->address = $request->address;
-        $sub->password = Hash::make($request->password);
-        $file = $request->file('img');
-        $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img/sub_admins';
-        $file->move($path, $filename);
-        $sub->img = $filename;
-        $sub->update();
-        return back()->with('success', ' Profile updated successfully');
+        $sub = SubAdmin::find($request->sid);
+        if ($sub) {
+            $sub->name = $request->name;
+            $sub->email = $request->email;
+            $sub->phone_number = $request->phone_number;
+            $sub->address = $request->address;
+            $sub->summary = $request->summary;
+            $sub->password = Hash::make($request->password);
+            $file = $request->file('img');
+            if ($file) {
+                $filename = time() . '.' . $file->getClientOriginalName();
+                $path = 'img/sub_admins';
+                $file->move($path, $filename);
+                $sub->img = $filename;
+            }
+            $sub->update();
+            return back()->with('success', ' Sub Admin updated successfully');
+        }
 
     }
     public function sadmin_profile($id)
@@ -69,15 +81,26 @@ class SadminController extends Controller
         return view('sub_admin.login', compact(['pg']));
     }
 
+/*
+public function check_login(Request $request)
+{
+$remmberme = $request->remmberme == 1 ? true : false;
+if (auth()->guard('subadmin')->attempt(['sub_admin_id' => $request->sub_admin_id, 'password' => $request->password], $remmberme)) {
+return redirect('/');
+} else {
+session()->flash('error', 'please enter valid ID and password');
+return back()->with(['message' => 'please enter valid ID and password']);
+}
+} */
+
     public function check_login(Request $request)
     {
-        $remmberme = $request->remmberme == 1 ? true : false;
-        if (auth()->guard('subadmin')->attempt(['sub_admin_id' => $request->sub_admin_id, 'password' => $request->password], $remmberme)) {
-            return redirect('/');
-        } else {
-            session()->flash('error', 'please enter valid ID and password');
-            return back()->with(['message' => 'please enter valid ID and password']);
+        $remmberme = $request->remmberme == "on" ? true : false;
+
+        if (!auth()->guard('subadmin')->attempt(request(['sub_admin_id', 'password'], $remmberme))) {
+            return back()->with(['error' => 'please enter valid ID and password']);
         }
+        return redirect()->intended(route('sub_admin.dashboard'));
     }
 
     public function accept($id)
@@ -107,14 +130,33 @@ class SadminController extends Controller
     public function logout()
     {
         auth()->guard('subadmin')->logout();
-        return redirect('/sadmin/login');
+        return redirect(route('sub_admin.login'));
     }
 
     public function sadmin_students()
     {
-        $stds = Student::paginate(5);
+        $sub = auth()->guard('subadmin')->user()->id;
+
+        $branchs = Branch::where('sub_admin_id', $sub)->get();
+        
+        /* if ($sub) {
+        if (!is_null($branch)) {
+
+        $branch = $branch->name;
+        dd($branch);
+        }
+         */
+        // get the same student in the same branch for the admin
+        foreach ($branchs as $branch) {
+            $student = Student::where('branch_id', $branch->id)->get();
+            if(!is_null($student)){
+                $students[] = $student;
+            }
+        }
+         
         $pg = 34;
-        return view('sub_admin.students', compact(['pg', 'stds']));
+        return view('sub_admin.students', compact(['pg', 'students']));
+
     }
 
     public function student_profile($id)
@@ -123,6 +165,7 @@ class SadminController extends Controller
         $profile = Student::find($id);
         return view('sub_admin.student_profile', compact(['profile', 'pg']));
     }
+
     public function add_std()
     {
         $pg = 34;
@@ -187,7 +230,14 @@ class SadminController extends Controller
         return redirect(route('student.login')->with('status', $validator->errors));
 
     }
- 
+
+    public function show_instructors()
+    {
+        $insts = Instructor::paginate(5);
+        $pg = 28;
+        return view('sub_admin.instructors', compact(['pg', 'insts']));
+    }
+
     public function del_std($id)
     {
         $sub = Student::find($id)->delete();

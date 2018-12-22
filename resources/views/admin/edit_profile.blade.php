@@ -46,8 +46,11 @@
                     <hr class="b-hr" /> --}}
                     <form action="{{url('/admin/editprofile')}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
+                        
                         <div class="b-form-row b-form-inline b-form-horizontal">
                             <div class="col-md-12 col-md-offset-2">
+                                <input type="hidden" value="{{auth()->guard('admin')->user()->id}}" required="" name="aid" />
+                                <input type="hidden" value="{{auth()->guard('admin')->user()->email}}" required="" name="email" />
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Admin ID</label>
                                     <div class="b-form-horizontal__input">
@@ -56,29 +59,50 @@
                                     </div>
                                 </div>
 
-                                <input type="hidden" value="{{auth()->guard('admin')->user()->id}}" required="" name="aid" />
+                                <div class="b-form-row">
+                                    <label class="b-form-horizontal__label" for="create_account_email">Email</label>
+                                    <div class="b-form-horizontal__input">
+                                        <input type="text" value="{{auth()->guard('admin')->user()->email}}" name="email" id="email" class="form-control"
+                                            disabled/>
+                                    </div>
+                                </div>
+
+                               
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Name</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" value="{{auth()->guard('admin')->user()->name}}" name="name" id="create_account_email" class="form-control"
+                                        <input type="text"   value="{{auth()->guard('admin')->user()->name}}" name="name" id="name" class="form-control"
                                         />
+                                    </div>
+                                </div>
+
+                                <div class="b-form-row">
+                                    <label class="b-form-horizontal__label" for="create_account_email">Phone Number</label>
+                                    <div class="b-form-horizontal__input">
+                                        <input type="text"  value="{{auth()->guard('admin')->user()->phone_number}}" name="phone_number" id="phone_number"
+                                            class="form-control" />
                                     </div>
                                 </div>
 
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Address</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" value="{{auth()->guard('admin')->user()->Address}}" name="address" id="create_account_email"
+                                        <input type="text" required="" value="{{auth()->guard('admin')->user()->address}}" name="address" id="address"
                                             class="form-control" />
                                     </div>
                                 </div>
 
                                 <div class="b-form-row">
+                                    <label class="b-form-horizontal__label" for="create_account_email">Summary</label>
+                                    <div class="b-form-horizontal__input">
+                                        <textarea class="form-control" id="summary" required="" name="summary" placeholder="Summary" rows="5">{{auth()->guard('admin')->user()->summary}}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Photo</label>
-                                    <div class="b-form-horizontal__input b-form-control__icon-wrap">
-                                        <span class="btn btn-success btn-file" style="margin-bottom: 10px;">
-                                        <i class="fa fa-image"></i> Choose photo <input type="file" required="" name="img" style=" opacity:0; height: 15px; width: 150px;" name="img">
-                                            </span>
+                                    <div class="b-form-horizontal__input">
+                                        <input type="file" name="img" id="img" class="btn btn-success btn-file" style=" height: 40px; width: 265px;" />
                                     </div>
                                 </div>
 
@@ -88,12 +112,7 @@
                                         <input type="password" required="" name="password" id="create_account_email" class="form-control" />
                                     </div>
                                 </div>
-                                <div class="b-form-row">
-                                    <label class="b-form-horizontal__label" for="create_account_email">Summary</label>
-                                    <div class="b-form-horizontal__input">
-                                        <textarea class="form-control" id="summary" required="" name="summary" placeholder="Details" rows="5">{{auth()->guard('admin')->user()->summary}}</textarea>
-                                    </div>
-                                </div>
+
 
                                 <div class="b-form-row">
                                     <div class="b-form-horizontal__label"></div>

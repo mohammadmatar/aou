@@ -48,7 +48,12 @@
         @foreach($branches as $branch)
         <tr>
           <td>{{$branch->name}}</td>
-          <td>@if(App\SubAdmin::where('id',$branch->sub_admin_id)->first()->name){{App\SubAdmin::where('id',$branch->sub_admin_id)->first()->name}}@endif</td>
+          <td>
+         
+           @if(App\SubAdmin::where('id',$branch->sub_admin_id)->first())
+            {{App\SubAdmin::where('id',$branch->sub_admin_id)->first()->name}}
+            @endif  
+          </td>
           <td>{{$branch->location}}</td>
           <td><a href="{{url('admin/brnedit',['id'=>$branch->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a></td>
           <td><a href="{{url('admin/delbrn',['id'=>$branch->id])}}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td>

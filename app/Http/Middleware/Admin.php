@@ -15,12 +15,17 @@ class Admin
      */
     public function handle($request, Closure $next=null,$guard=null)
     {
+            /*  dd($guard);
         if (Auth::guard($guard)->check()) {
-            return $next($request);
-                return redirect(route('admin_dashboard'));
+            return $next($request); 
+            return redirect(route('admin.dashboard'));
         }else {
-            return redirect('/admin/login');
+            return redirect(route('admin.login'));
+        } */
+
+        if (Auth::guard($guard)->check()) {    
+            return $next($request);
         }
-       
+        return redirect(route('admin.dashboard'));
     }
 }

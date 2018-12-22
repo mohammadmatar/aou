@@ -2,7 +2,7 @@
   <div class="b-footer-primary">
     <div class="container">
         <div class="row">
-            <div class="col-sm-4 col-xs-12 f-copyright b-copyright">Copyright Mostafa Mohamed © 2018 - All Rights Reserved</div>
+            <div class="col-sm-4 col-xs-12 f-copyright b-copyright">Copyright © 2018 - All Rights Reserved</div>
             <div class="col-sm-8 col-xs-12">
                 <div class="b-btn f-btn b-btn-default b-right b-footer__btn_up f-footer__btn_up j-footer__btn_up">
                     <i class="fa fa-chevron-up"></i>
@@ -23,7 +23,7 @@
   <div class="container">
     <div class="b-footer-secondary row">
       <div class="col-md-3 col-sm-12 col-xs-12 f-center b-footer-logo-containter">
-          <a href=""><img data-retina class="b-footer-logo color-theme" src="/img/logo-vertical-default.jpg" alt="Logo"/></a>
+          <a href=""><img data-retina class="b-footer-logo color-theme" src="/img/arab_open_university_logo.png" style="height:80px;width:80px" alt="Logo"/></a>
           <div class="b-footer-logo-text f-footer-logo-text">
           <p>start with us to strengthen yours skills to meet the market needs .</p>
           <div class="b-btn-group-hor f-btn-group-hor">

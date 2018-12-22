@@ -55,43 +55,66 @@ Edit Sub Admin | AOU
                             </div>
 
                                     <input type="hidden" value="{{$sub->id}}" required="" name="sid"   />
-                            <div class="b-form-row">
-                                <label class="b-form-horizontal__label" for="create_account_email">Name</label>
-                                <div class="b-form-horizontal__input">
-                                    <input type="text" required="" value="{{$sub->name}}" name="name" id="create_account_email" class="form-control" />
-                                </div>
+                                    <input type="hidden" value="{{$sub->email}}" required="" name="email" />
+                           <div class="b-form-row">
+                            <label class="b-form-horizontal__label" for="create_account_email">Email</label>
+                            <div class="b-form-horizontal__input">
+                                <input type="text" value="{{$sub->email}}" name="email" id="email" class="form-control" disabled/>
                             </div>
-
-                            <div class="b-form-row">
-                                <label class="b-form-horizontal__label" for="create_account_email">Address</label>
-                                <div class="b-form-horizontal__input">
-                                    <input type="text" required="" value="{{$sub->Address}}" name="address" id="create_account_email" class="form-control" />
-                                </div>
-                            </div>
-                         
+                        </div>
+                        
+                        
                         <div class="b-form-row">
-                          <label class="b-form-horizontal__label" for="create_account_email">Photo</label>
-                          <div class="b-form-horizontal__input b-form-control__icon-wrap">
-                              <span class="btn btn-success btn-file" style="margin-bottom: 10px;">
-                           <i class="fa fa-image"></i> Choose photo <input type="file" required="" name="img" style=" opacity:0; height: 15px; width: 150px;" name="img">
-                              </span>
-                          </div>
-                      </div>
-
-                      <div class="b-form-row">
-                                <label class="b-form-horizontal__label" for="create_account_email">Password</label>
-                                <div class="b-form-horizontal__input">
-                                    <input type="password" required="" name="password" id="create_account_email" class="form-control" />
-                                </div>
+                            <label class="b-form-horizontal__label" for="create_account_email">Name</label>
+                            <div class="b-form-horizontal__input">
+                                <input type="text" value="{{$sub->name}}" name="name" id="name" class="form-control" />
                             </div>
-
+                        </div>
+                        
+                        <div class="b-form-row">
+                            <label class="b-form-horizontal__label" for="create_account_email">Phone Number</label>
+                            <div class="b-form-horizontal__input">
+                                <input type="text" value="{{$sub->phone_number}}" name="phone_number" id="phone_number" class="form-control"
+                                />
+                            </div>
+                        </div>
+                        
+                        <div class="b-form-row">
+                            <label class="b-form-horizontal__label" for="create_account_email">Address</label>
+                            <div class="b-form-horizontal__input">
+                                <input type="text" required="" value="{{$sub->address}}" name="address" id="address" class="form-control"
+                                />
+                            </div>
+                        </div>
+                        
+                        <div class="b-form-row">
+                            <label class="b-form-horizontal__label" for="create_account_email">Summary</label>
+                            <div class="b-form-horizontal__input">
+                                <textarea class="form-control" id="summary" required="" name="summary" placeholder="Summary" rows="5">{{$sub->summary}}</textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="b-form-row">
+                            <label class="b-form-horizontal__label" for="create_account_email">Photo</label>
+                            <div class="b-form-horizontal__input">
+                                <input type="file" name="img" id="img" class="btn btn-success btn-file" style=" height: 40px; width: 265px;" />
+                            </div>
+                        </div>
+                        
+                        <div class="b-form-row">
+                            <label class="b-form-horizontal__label" for="create_account_email">Password</label>
+                            <div class="b-form-horizontal__input">
+                                <input type="password" required="" name="password" id="create_account_email" class="form-control" />
+                            </div>
+                        </div>
+                        
+                        <div class="b-form-row">
+                            <div class="b-form-horizontal__label"></div>
+                            <div class="b-form-horizontal__input">
+                                <input type="submit" class="b-btn f-btn b-btn-md b-btn-default f-primary-b b-btn__w100" value="Save">
+                            </div>
                       
-                            <div class="b-form-row">
-                                <div class="b-form-horizontal__label"></div>
-                                <div class="b-form-horizontal__input">
-                                    <input type="submit" class="b-btn f-btn b-btn-md b-btn-default f-primary-b b-btn__w100" value="Save">
-                                </div>
-                            </div>
+                           
                         </div>
                       </form>
                     </div>

@@ -24,7 +24,7 @@
       </ul>
     </div>
   </div>
-  <hr> @if(!is_null($reqs))
+  <hr> @if(count($reqs))
   <div class="b-pagination"> {{ $reqs->links() }}</div>
   <div class="row b-shortcode-example">
     @foreach($reqs as $req)

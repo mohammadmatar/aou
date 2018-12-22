@@ -11,7 +11,7 @@
                     </li>
                     <li class="nav-item">
                         <ul class="list-unstyled components" style="padding-left:15px;display: block; padding: .5rem 1rem;">
-                            @if(auth()->guard('admin')->user())
+                          {{--   @if(auth()->guard('admin')->user()) --}}
                             <li class="nav-item">
                                 <a href="#profile" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                                                     <span data-feather="users"></span>  Admin Profile</a>
@@ -27,8 +27,8 @@
                                 </ul>
                             </li>
 
-                           @elseif(auth()->guard('subadmin')->user())
-                            <li class="nav-item">
+                      {{--      @elseif(auth()->guard('subadmin')->user()) --}}
+                          {{--   <li class="nav-item">
                                 <a href="#profile" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                                                                                 <span data-feather="users"></span>  Sub Admin Profile</a>
                                 <ul class="collapse list-unstyled" id="profile">
@@ -41,8 +41,8 @@
                                                  <span data-feather="file-text"></span>Edit Profile</a>
                                     </li>
                                 </ul>
-                            </li>
-                            @endif
+                            </li> --}}
+                          {{--   @endif --}}
                         </ul>
                     </li>
 
@@ -75,8 +75,8 @@
                                 <a href="#instructors" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                                                     <span data-feather="users"></span> Instructors</a>
                                 <ul class="collapse list-unstyled" id="instructors">
-                                    @if(auth()->guard('admin')->user())
-                                    <li class="nav-item">
+{{--                                     @if(auth()->guard('admin')->user())
+ --}}                                    <li class="nav-item">
                                         <a class="nav-link" href="{{url('/admin/instructors')}}">
                                         <span data-feather="file-text"></span>View All</a>
                                     </li>
@@ -88,8 +88,8 @@
                                         <a class="nav-link" href="{{url('/admin/requests')}}">
                                         <span data-feather="file-minus"></span>Course Requests </a>
                                     </li>
-                                    @endif @if(auth()->guard('subadmin')->user())
-                                    <li class="nav-item">
+{{--                                     @endif @if(auth()->guard('subadmin')->user())
+ --}}                                 {{--    <li class="nav-item">
                                         <a class="nav-link" href="{{url( '/sadmin/instructors')}}">
                                                                        <span data-feather="file-text"></span>View All</a>
                                     </li>
@@ -97,7 +97,7 @@
                                         <a class="nav-link" href="{{url('/sadmin/requests')}}">
                                                                          <span data-feather="file-plus"></span>Course Requests</a>
                                     </li>
-                                    @endif
+                                    @endif --}}
                                 </ul>
                             </li>
                         </ul>

@@ -6,7 +6,7 @@ Change Password Balance Enquiry Mini Statement Customized Statement Login & Logo
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#{{-- user profile --}}">
         @auth
-        {{ Auth::guard('admin')->user()->name }}
+        {{ Auth::guard('subadmin')->user()->name }}
          @endauth
     </a>
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
@@ -20,7 +20,7 @@ Change Password Balance Enquiry Mini Statement Customized Statement Login & Logo
                 @csrf
                 <button type="submit" class="btn btn-link" >{{ __('Logout') }}</button>
             </form> --}}
-<a href="{{route('Sadmin.logout')}}">Logout</a>
+<a href="{{route('sadmin.logout')}}">Logout</a>
         </li>
     </ul>
     

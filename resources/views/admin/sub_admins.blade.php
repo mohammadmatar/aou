@@ -52,7 +52,7 @@ Sub Admins | AOU
 {{--                 <td><img class="j-data-element" {{-- data-animate="fadeInDown"  style="height: 100px; width: 100px;" data-retina src="/sub_admins/{{$sub->img}}" alt=""/></td> --}}
                 <td>{{$sub->id}}</td>
                 <td><a href="{{url('/sub/profile',['id'=>$sub->id])}}">{{$sub->name}}</a></td>
-                <td>{{$sub->Address}}</td>
+                <td>{{$sub->address}}</td>
                 <td>@if(!empty(App\Branch::where('sub_admin_id',$sub->id)->first()->name))
                   {{App\Branch::where('sub_admin_id',$sub->id)->first()->name}}
                 @endif</td>

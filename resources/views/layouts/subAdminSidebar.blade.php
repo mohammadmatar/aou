@@ -11,29 +11,12 @@
                     </li>
                     <li class="nav-item">
                         <ul class="list-unstyled components" style="padding-left:15px;display: block; padding: .5rem 1rem;">
-                            @if(auth()->guard('admin')->user())
                             <li class="nav-item">
                                 <a href="#profile" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                                                                    <span data-feather="users"></span>  Admin Profile</a>
+                             <span data-feather="users"></span>  Sub Admin Profile</a>
                                 <ul class="collapse list-unstyled" id="profile">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{url('/admin/profile',['id'=>auth()->guard('admin')->user()->id])}}">
-                    <span data-feather="file-text"></span>My Profile</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{url('/admin/profile')}}">
-                     <span data-feather="file-text"></span>Edit Profile</a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                           @elseif(auth()->guard('subadmin')->user())
-                            <li class="nav-item">
-                                <a href="#profile" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                                                                                                <span data-feather="users"></span>  Sub Admin Profile</a>
-                                <ul class="collapse list-unstyled" id="profile">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="href="{{url('/sadmin/profile',['id'=>auth()->guard('subadmin')->user()->id])}}">
+                                        <a class="nav-link" href="{{url('/sadmin/profile',['id'=>auth()->guard('subadmin')->user()])}}">
                                                 <span data-feather="file-text"></span>My Profile</a>
                                     </li>
                                     <li class="nav-item">
@@ -42,11 +25,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            @endif
                         </ul>
                     </li>
 
-                    <li class="nav-item">
+                  {{--   <li class="nav-item">
                         <ul class="list-unstyled components" style="padding-left:15px;display: block; padding: .5rem 1rem;">
                     
                             <li class="nav-item">
@@ -60,13 +42,13 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{url('/admin/addsub')}}">
-                                                                             <span data-feather="file-text"></span>Add Sub Admin</a>
+                                     <span data-feather="file-text"></span>Add Sub Admin</a>
                                     </li>
                                 </ul>
                                   
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     <li class="nav-item">
                         <ul class="list-unstyled components" style="padding-left:15px;display: block; padding: .5rem 1rem;">
@@ -75,20 +57,7 @@
                                 <a href="#instructors" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                                                     <span data-feather="users"></span> Instructors</a>
                                 <ul class="collapse list-unstyled" id="instructors">
-                                    @if(auth()->guard('admin')->user())
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{url('/admin/instructors')}}">
-                                        <span data-feather="file-text"></span>View All</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{url('/sign/requests')}}">
-                                         <span data-feather="file-plus"></span>Signs</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{url('/admin/requests')}}">
-                                        <span data-feather="file-minus"></span>Course Requests </a>
-                                    </li>
-                                    @endif @if(auth()->guard('subadmin')->user())
+                               
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{url( '/sadmin/instructors')}}">
                                                                        <span data-feather="file-text"></span>View All</a>
@@ -97,8 +66,7 @@
                                         <a class="nav-link" href="{{url('/sadmin/requests')}}">
                                                                          <span data-feather="file-plus"></span>Course Requests</a>
                                     </li>
-                                    @endif
-                                </ul>
+                                 </ul>
                             </li>
                         </ul>
                     </li>
@@ -118,21 +86,20 @@
                         <ul class="list-unstyled components" style="padding-left:15px;display: block; padding: .5rem 1rem;">
 
                             <li class="nav-item">
-                                <a href="#reports" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                                                <span data-feather="bar-chart-2"></span>Branches</a>
-                                <ul class="collapse list-unstyled" id="reports">
+                                <a href="#students" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                                <span data-feather="bar-chart-2"></span>Students</a>
+                                <ul class="collapse list-unstyled" id="students">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{url('/admin/branches')}}">
+                                        <a class="nav-link" href="{{url('/sadmin/students')}}">
                                                                 <span data-feather="file-text"></span>View All
                                                             </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{url('/admin/addbrn')}}">
-                                                               <span data-feather="file-plus"></span>Add New Branch
+                                        <a class="nav-link" href="{{url('/student/enrolls')}}">
+                                                               <span data-feather="file-plus"></span>Enrolls in Courses
                                                             </a>
                                     </li>
-                                   
-
+  
                                 </ul>
                             </li>
                         </ul>

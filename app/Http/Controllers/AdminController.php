@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin', ['except' => ['logout', 'login', 'check_login']]);
+    }
+
     public function index()
     {
         return view('admin.dashboard');
@@ -33,6 +38,14 @@ class AdminController extends Controller
         $reqs = Arequest::where('admin_status', '=', '0')->paginate(5);
         $pg = 3;
         return view('admin.requests', compact(['pg', 'reqs']));
+    }
+
+    public function branch_Subadmin($branchID)
+    {
+        $subAdmin = new SubAdmin();
+        $subAdminID = $subAdmin->where('id', $branchID)->first();
+        dd($subAdminID->name);
+
     }
     public function admin_branches()
     {
@@ -97,7 +110,7 @@ class AdminController extends Controller
     public function applicants($id)
     {
         $pg = 26;
-        $apps = Application::where('course_id', '=', $id)->paginate(5);;
+        $apps = Application::where('course_id', '=', $id)->paginate(5);
         return view('admin.applicants', compact(['pg', 'apps']));
     }
 
@@ -117,19 +130,36 @@ class AdminController extends Controller
 
     public function save_sub(Request $request)
     {
-        $sub = new SubAdmin();
-        $sub->name = $request->name;
-        $sub->Address = $request->address;
-        $sub->password = Hash::make($request->password);
-        $sub->sub_admin_id = SubAdmin::max('sub_admin_id') + 1;
-        $file = $request->file('img');
-        $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img/sub_admins';
-        $file->move($path, $filename);
-        $sub->img = $filename;
-        $sub->save();
-        return back()->with('success', ' Sub Admin added successfully');
+        $validator = $this->validate(request(), [
+            'name' => 'required|string|min:2|max:255',
+            'email' => 'required|email|unique:sub_admins,email,' . $request->id,
+            'password' => 'required|min:6',
+            'phone_number' => 'numeric|min:8',
+            'img' => 'required|mimes:jpeg,png,jpg,gif,svg',
+        ]);
 
+        if ($validator) {
+
+            $sub = new SubAdmin();
+
+            $sub->name = $request->name;
+            $sub->email = $request->email;
+            $sub->phone_number = $request->phone_number;
+            $sub->address = $request->address;
+            $sub->summary = $request->summary;
+            $sub->password = Hash::make($request->password);
+            $sub->sub_admin_id = SubAdmin::max('sub_admin_id') + 1;
+            $file = $request->file('img');
+            if ($file) {
+                $filename = time() . '.' . $file->getClientOriginalName();
+                $path = 'img/sub_admins';
+                $file->move($path, $filename);
+                $sub->img = $filename;
+            }
+            $sub->role = 'sub_admin';
+            $sub->save();
+            return back()->with('success', ' Sub Admin added successfully');
+        }
     }
 
     public function save_brn(Request $request)
@@ -145,17 +175,23 @@ class AdminController extends Controller
     public function ed_sub(Request $request)
     {
         $sub = SubAdmin::find($request->sid);
-        $sub->name = $request->name;
-        $sub->Address = $request->address;
-        $sub->password = Hash::make($request->password);
-        $file = $request->file('img');
-        $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img/sub_admins';
-        $file->move($path, $filename);
-        $sub->img = $filename;
-        $sub->update();
-        return back()->with('success', ' Sub Admin updated successfully');
-
+        if ($sub) {
+            $sub->name = $request->name;
+            $sub->email = $request->email;
+            $sub->phone_number = $request->phone_number;
+            $sub->address = $request->address;
+            $sub->summary = $request->summary;
+            $sub->password = Hash::make($request->password);
+            $file = $request->file('img');
+            if ($file) {
+                $filename = time() . '.' . $file->getClientOriginalName();
+                $path = 'img/sub_admins';
+                $file->move($path, $filename);
+                $sub->img = $filename;
+            }
+            $sub->update();
+            return back()->with('success', ' Sub Admin updated successfully');
+        }
     }
 
     public function ed_inst(Request $request)
@@ -212,18 +248,23 @@ class AdminController extends Controller
     public function update_profile(Request $request)
     {
         $admin = Admin::find($request->aid);
-        $admin->name = $request->name;
-        $admin->Address = $request->address;
-        $admin->summary = $request->summary;
-        $admin->password = Hash::make($request->password);
-        $file = $request->file('img');
-        $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img/admins';
-        $file->move($path, $filename);
-        $admin->img = $filename;
-        $admin->update();
-        return back()->with('success', ' Profile updated successfully');
-
+        if ($admin) {
+            $admin->name = $request->name;
+            $admin->address = $request->address;
+            $admin->email = $request->email;
+            $admin->phone_number = $request->phone_number;
+            $admin->summary = $request->summary;
+            $admin->password = Hash::make($request->password);
+            if (!is_null($request->file('img'))) {
+                $file = $request->file('img');
+                $filename = time() . '.' . $file->getClientOriginalName();
+                $path = 'img/admins';
+                $file->move($path, $filename);
+                $admin->img = $filename;
+            }
+            $admin->update();
+            return back()->with('success', ' Profile updated successfully');
+        }
     }
 
     public function del_sub($id)
@@ -278,6 +319,7 @@ class AdminController extends Controller
         return view('admin.signs', compact(['pg', 'reqs']));
     }
 
+    
     public function login()
     {
         $pg = 0;
@@ -333,26 +375,21 @@ class AdminController extends Controller
         return back();
     }
 
-
-
     public function check_login(Request $request)
     {
-
         $remmberme = $request->remmberme == "on" ? true : false;
 
         if (!auth()->guard('admin')->attempt(request(['admin_id', 'password'], $remmberme))) {
             return back()->with(['error' => 'please enter valid ID and password']);
         }
 
-        return view('admin.dashboard');
-
+        return redirect()->intended(route('admin.dashboard'));
     }
 
- 
     public function logout()
     {
         auth()->guard('admin')->logout();
-        return redirect('/admin/login');
+        return redirect(route('admin.login'));
 
     }
 }

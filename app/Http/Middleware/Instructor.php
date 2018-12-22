@@ -19,7 +19,7 @@ class Instructor
             return $next($request);
                 return('/');
         }else {
-            return redirect('instructor/login');
+            return redirect(route('instructor.login'));
         }
        
     }

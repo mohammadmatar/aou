@@ -16,11 +16,15 @@ class CreateSubAdminsTable extends Migration
         Schema::create('sub_admins', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('sub_admin_id')->unique();
-            $table->string('img')->default('sub.png'); 
-            $table->string('password');
             $table->String('name');
-            $table->text('Address');
-
+            $table->string('img')->default('sub.png');
+            $table->string('email')->unique();
+            $table->string('phone_number');
+            $table->string('address');
+            $table->string('password');
+            $table->text('summary');
+            $table->char('role');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

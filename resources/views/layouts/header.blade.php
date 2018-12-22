@@ -18,25 +18,27 @@
 <!-- End bxslider -->
 
 <style type="text/css">
-	#mo,#details,#sights{
-		border-radius: 5px;
-		 width: 300px;
-		 margin-bottom: 7px;
-		 float: left;}
-		 .mm {
-  display:inline-block;
-    *display: inline;     /* for IE7*/
-    zoom:1;              /* for IE7*/
-    float: left;
-    padding-top: 5px;
-    text-align: left;
-    width: 100px;
-}​
-
-
-	
-</style>
-
+    #mo,
+    #details,
+    #sights {
+      border-radius: 5px;
+      width: 300px;
+      margin-bottom: 7px;
+      float: left;
+    }
+  
+    .mm {
+      display: inline-block;
+      display: inline;
+      /* for IE7*/
+      zoom: 1;
+      /* for IE7*/
+      float: left;
+      padding-top: 5px;
+      text-align: left;
+      width: 100px;
+    }
+  </style>​
 
 <!-- Animate css -->
 <link type="text/css" rel='stylesheet' href="/css/animate.css">

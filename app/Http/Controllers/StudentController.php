@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\auth;
 use App\Application;
 use App\Student;
 use Mail;
+use Welcome;
 use Illuminate\Support\Facades\Hash;
 class StudentController extends Controller
 {

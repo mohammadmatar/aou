@@ -17,9 +17,8 @@ class Student
     {
         if (Auth::guard($guard)->check()) {
             return $next($request);
-                return('/');
-        }else {
-            return redirect('student/login');
+         }else {
+            return redirect(route('student.login'));
         }
        
     }

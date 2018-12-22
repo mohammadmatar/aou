@@ -21,7 +21,7 @@ class CreateInstructorsTable extends Migration
             $table->string('email')->unique();
             $table->string('phone_number');
             $table->string('password');
-            $table->text('address');
+            $table->text('summary');
             $table->string('cv');
             $table->boolean('status')->default(0);
             $table->string('token', 254)->nullable();
