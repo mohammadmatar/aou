@@ -14,7 +14,7 @@
 <div class="container" id="box" style="margin-top: 50px;">
 	<div class="row well">
 		<center><h3>course Application Details</h3></center>
-		<center><img src="/img/{{$app->inv_img}}" style="height: 150px; width: 200px;"></center>
+		<center><img src="/img/invoices/{{$app->inv_img}}" style="height: 150px; width: 200px;"></center>
         <label style="color: green;">Application Date: </label>  
         {{$app->created_at}}<br>
         <label style="color: green;">Name: </label>  {{App\Student::where('id','=',$app->student_id)->first()->name}}<br>
