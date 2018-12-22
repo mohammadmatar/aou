@@ -62,12 +62,12 @@ Student Registeration | AOU
                           
                            <input type="hidden" name="course_id" value="{{$id}}">
 
-                           <div class="b-form-row">
+                          {{--  <div class="b-form-row">
                             <label class="b-form-horizontal__label" for="create_account_email">University Account#</label>
                             <div class="b-form-horizontal__input">
                                 <input type="text" readonly="" value="1125566255" id="create_account_email" class="form-control" />
                             </div>
-                        </div>
+                        </div> --}}
                             <div class="b-form-row">
                                 <label class="b-form-horizontal__label" for="create_account_email">Inv#</label>
                                 <div class="b-form-horizontal__input">
@@ -90,15 +90,21 @@ Student Registeration | AOU
                                 </div>
                             </div>
                          
-                        <div class="b-form-row">
+                       {{--  <div class="b-form-row">
                           <label class="b-form-horizontal__label" for="create_account_email">Photo</label>
                           <div class="b-form-horizontal__input b-form-control__icon-wrap">
                               <span class="btn btn-success btn-file" style="margin-bottom: 10px;">
                            <i class="fa fa-image"></i> Inv photo <input type="file" required="" name="inv_img" style=" opacity:0; height: 15px; width: 150px;" name="img">
                               </span>
                           </div>
-                      </div>
+                      </div> --}}
 
+                      <div class="b-form-row">
+                            <label class="b-form-horizontal__label" for="create_account_email">Photo</label>
+                            <div class="b-form-horizontal__input">
+                                <input type="file" name="inv_img" id="inv_img" class="btn btn-success btn-file" style=" height: 40px; width: 265px;" />
+                            </div>
+                        </div>
                     
                             
                       

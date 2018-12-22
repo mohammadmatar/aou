@@ -138,7 +138,7 @@ return back()->with(['message' => 'please enter valid ID and password']);
         $sub = auth()->guard('subadmin')->user()->id;
 
         $branchs = Branch::where('sub_admin_id', $sub)->get();
-        
+
         /* if ($sub) {
         if (!is_null($branch)) {
 
@@ -149,11 +149,11 @@ return back()->with(['message' => 'please enter valid ID and password']);
         // get the same student in the same branch for the admin
         foreach ($branchs as $branch) {
             $student = Student::where('branch_id', $branch->id)->get();
-            if(!is_null($student)){
+            if (!is_null($student)) {
                 $students[] = $student;
             }
         }
-         
+
         $pg = 34;
         return view('sub_admin.students', compact(['pg', 'students']));
 
@@ -176,23 +176,37 @@ return back()->with(['message' => 'please enter valid ID and password']);
     {
         $pg = 34;
         $std = Student::find($id);
-        return view('sub_admin.edit_student', compact(['pg', 'std']));
+        if ($std) {
+            $sub = auth()->guard('subadmin')->user()->id;
+            
+            $branch = Branch::where('sub_admin_id', $sub)->get();
+            foreach ($branch as $branch) {
+                if ($branch->id == $std->branch_id) {
+                    return view('sub_admin.edit_student', compact(['pg', 'std']));
+                }
+            }
+        }
+        return redirect('/sadmin/students');
     }
+
     public function ed_std(Request $request)
     {
         $std = Student::find($request->sid);
+
         $std->name = $request->name;
-        $std->Address = $request->address;
-        $std->level = $request->level;
+        $std->address = $request->address;
         $std->level = $request->level;
         $std->email = $request->email;
+        $std->phone_number = $request->phone_number;
         $std->branch_id = $request->branch_id;
         $std->password = Hash::make($request->password);
         $file = $request->file('img');
-        $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img/students';
-        $file->move($path, $filename);
-        $std->img = $filename;
+        if ($file) {
+            $filename = time() . '.' . $file->getClientOriginalName();
+            $path = 'img/students';
+            $file->move($path, $filename);
+            $std->img = $filename;
+        }
         $std->update();
         return back()->with('success', ' Student updated successfully');
 

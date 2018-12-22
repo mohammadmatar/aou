@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\auth;
 use App\Application;
 use App\Student;
 use Mail;
-use Welcome;
+ 
+use App\Mail\Welcome;
+
 use Illuminate\Support\Facades\Hash;
 class StudentController extends Controller
 {
@@ -194,12 +196,15 @@ public function update_profile(Request $request){
     }
 
     public function apply_course(Request $request)
-    {   
-        //dd($request);
+    {
+        $validator = $this->validate(request(), [
+            'inv_img' => 'required|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
         $student_id=auth()->guard('student')->user()->id;
         $application=Application::where('student_id','=',$student_id)->where('course_id','=',$request->course_id)->get();
         if($application->isNotEmpty()){
-           return redirect('/')->with('error',' You applied to this course before');
+            return back()->with('error',' You applied to this course before');
         }else{
             $app=new Application();
             $test=Application::where('inv_no',$request->inv_no)->get();

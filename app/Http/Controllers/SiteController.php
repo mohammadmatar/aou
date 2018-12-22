@@ -8,6 +8,9 @@ use App\Field;
 use App\Http\Requests\SignRequest;
 use App\Instructor;
 use App\Sign;
+use App\Student;
+use Mail;
+use App\Mail\Welcome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 

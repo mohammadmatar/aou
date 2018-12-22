@@ -30,7 +30,7 @@
         <div class="col-md-8 col-md-offset-2">
 
             <div class="b-tagline-box b-tagline-box--big">
-                <center><img src="/img/{{$app->inv_img}}" style="height: 150px; width: 200px;"></center>
+                <center><img src="/img/invoices/{{$app->inv_img}}" style="height: 150px; width: 200px;"></center>
                 <label style="color: green;">Name: </label> {{App\Student::where('id','=',$app->student_id)->first()->name}}<br>
                 <label style="color: green;">Branch: </label>
                 <?php $b_id=App\Course::find($app->course_id)->branch_id; ?> {{App\Branch::where('id','=',$b_id)->first()->name}}
