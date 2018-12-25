@@ -27,12 +27,13 @@
     @if(count($courses)) @foreach($courses as $course)
 
     <?php $apps=App\Application::where('course_id','=',$course->id)->where('status','=','1')->get();?> @if(count($apps))
-
+<div class="b-pagination"> {{ $courses->links() }}</div>
     <div class="row b-shortcode-example">
         <div class="col-md-8 col-md-offset-2 col-sm-8">
             <table class="table table-hovered table-bordered table-stripped">
                 <tr>
                     <th>Course</th>
+                    <th>Branch</th>
                     <th>Student Name</th>
                     <th>Email</th>
                     <th>Phone Number</th>
@@ -41,6 +42,7 @@
                 <?php $student = App\Student::where('student_id',$app->student_id)->first()?>
                 <tr>
                     <td>{{$course->name}}</td>
+                    <td>{{$course->branch->name}}</td>
                     <td>{{$student->name}}</td>
                     <td>{{$student->email}}</td>
                     <td>{{$student->phone_number}}</td>

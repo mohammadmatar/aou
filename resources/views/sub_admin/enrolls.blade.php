@@ -23,52 +23,63 @@
             </ul>
         </div>
     </div>
-    
-    <?php $cnt=0; ?> @foreach($courses as $course)
-    <?php $apps=App\Application::where('course_id','=',$course->id)->/* where('status',0)-> */get();
-    ?> @if($apps->isNotEmpty()) @foreach($apps as $app)
-    <?php $cnt++;?>
+
+
+
+    @if(count($courses)) @foreach($courses as $course)
+
+    <?php $apps=App\Application::where('course_id','=',$course->id)->where('status','=','1')->get();?> @if(count($apps))
+  
+<div class="b-pagination"> {{ $courses->links() }}</div>
     <div class="row b-shortcode-example">
-        <div class="col-md-8 col-md-offset-2">
-
-
-            <div class="b-tagline-box b-tagline-box--big">
-                <center><img src="/img/invoices/{{$app->inv_img}}" style="height: 150px; width: 200px;"></center>
-                <label style="color: green;">Name: </label> {{App\Student::where('id','=',$app->student_id)->first()->name}}<br>
-                <label style="color: green;">Branch: </label> {{$course->branch->name}}
-                <br>
-                <label style="color: green;">Invoice#: </label> {{$app->inv_no}}
-                <br>
-                <label style="color: green;">Account#: </label> {{$app->acc_no}}
-                <br>
-                <div class="b-tagline_btn f-center b-tagline_btn--right">
-                    <a href="{{url('instructor/accept',['id'=>$app->id])}}" class="button-sm button-green-bright"><i class="fa fa-check"></i></a>
-                </div>
-                <div class="b-tagline_btn f-center b-tagline_btn--right">
-                    <a href="{{url('instructor/refuse',['id'=>$app->id])}}" class="button-sm button-red"><i class="fa fa-ban"></i></a>
-                </div>
-                <div class="b-tagline_btn f-center b-tagline_btn--right">
-                    <a href="{{url('instructor/print',['id'=>$app->id])}}" class="button-sm button-turquoise"><i class="fa fa-print"></i></a>
-                </div>
-                <div class="f-tagline_description b-tagline_description">
-                    <label style="color: green;">Description: </label> {{$course->summary}}
-                </div>
-
-            </div>
-
+        <div class="col-md-8 col-md-offset-2 col-sm-8">
+            <table class="table table-hovered table-bordered table-stripped">
+                <tr>
+                    <th>Course</th>
+                    <th>Branch</th>
+                    <th>Student Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Invoice#</th>
+                    <th>Account#</th>
+                  
+                    <th>Print</th>
+                </tr>
+                @foreach($apps as $app)
+                <?php $student = App\Student::where('student_id',$app->student_id)->first()?>
+                <tr>
+                    <td>{{$course->name}}</td>
+                    <td>{{$course->branch->name}}</td>
+                    <td>{{$student->name}}</td>
+                    <td>{{$student->email}}</td>
+                    <td>{{$student->phone_number}}</td>
+                    <td>{{$app->inv_no}}</td>
+                    <td>{{$app->acc_no}}</td>
+                    
+                    <td>
+                        <a href="{{url('instructor/print',['id'=>$app->id])}}" class="button-sm button-turquoise">
+                           
+                            <i class="fa fa-print"></i>
+                        </a>
+                    </td>
+                   
+                </tr>
+                @endforeach
+            </table>
         </div>
     </div>
-    @endforeach @endif @endforeach 
-    
-    @if($cnt==0)
+
+
+    @endif @endforeach @else
     <div class="row b-shortcode-example">
         <div class="col-md-8 col-md-offset-2">
             <div class="b-tagline-box b-tagline-box--big">
                 <div class="f-tagline_description b-tagline_description">
-                   <p style="font-size:20px;text-align:center"> No enrolls in your courses yet.</p>
+                    <p style="font-size:20px;text-align:center"> No enrolls in your courses yet.</p>
                 </div>
             </div>
         </div>
     </div>
     @endif
+</div>
 @endsection

@@ -261,8 +261,8 @@ return back()->with(['message' => 'please enter valid ID and password']);
         return view('instructor.enrolls', compact(['pg', 'courses']));
  */
         $pg = 11;
-        $courses = Instructor::paginate(5);
-        dd("This page under construction ".$courses);
+        $courses = Course::paginate(1);
+        //dd("This page under construction ".$courses);
         return view('sub_admin.enrolls', compact(['pg', 'courses']));
     }
 
