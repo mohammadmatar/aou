@@ -9,7 +9,7 @@ Change Password Balance Enquiry Mini Statement Customized Statement Login & Logo
         {{ Auth::guard('admin')->user()->name }}
          @endauth
     </a>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    {{-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> --}}
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a href="{{route('admin.logout')}}">Logout</a>
