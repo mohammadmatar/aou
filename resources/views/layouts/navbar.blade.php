@@ -134,12 +134,12 @@
                             </ul>
                         </div>
                     </li>
-                    @endif @if(auth()->guard('subadmin')->user())
-                    <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==0){echo 'is-active-top-nav__1level';}?> f-primary-b">
+                    @endif {{-- @if(auth()->guard('subadmin')->user())
+                    <li class="b-top-nav__1level f-top-nav__1level <php if($pg==0){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="#"><i class="fa fa-folder-open b-menu-1level-ico"></i>{{auth()->guard('subadmin')->user()->name}}<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                         <div class="b-top-nav__dropdomn">
                             <ul class="b-top-nav__2level_wrap">
-                                <?php $sub_id=auth()->guard('subadmin')->user()->id;
+                                <php $sub_id=auth()->guard('subadmin')->user()->id;
                                   if($brn_id=App\Branch::where('sub_admin_id',$sub_id)->first())
                                   $brn_id = $brn_id->id;
                                   ?>
@@ -150,7 +150,7 @@
                             </ul>
                         </div>
                     </li>
-                    @endif @if(auth()->guard('student')->user())
+                    @endif --}} @if(auth()->guard('student')->user())
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==0){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="#"><i class="fa fa-folder-open b-menu-1level-ico"></i>{{auth()->guard('student')->user()->name}}<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                         <div class="b-top-nav__dropdomn">

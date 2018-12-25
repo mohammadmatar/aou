@@ -19,7 +19,7 @@ Student Profile | AOU
         <div class="container">
             <ul>
                 <li><a href="{{url('/sdashboard')}}"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href=""><i class="fa fa-angle-right"></i>Student</a></li>
+                <li><a href="/sadmin/students/"><i class="fa fa-angle-right"></i>Student</a></li>
                 <li><i class="fa fa-angle-right"></i><span>Profile</span></li>
             </ul>
         </div>

@@ -18,13 +18,11 @@
         <div class="container">
             <ul>
                 <li><a href="{{url('/sdashboard')}}"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href=""><i class="fa fa-angle-right"></i>Instructor</a></li>
-                <li><i class="fa fa-angle-right"></i><span>Requests</span></li>
+                <li><a href="/sadmin/students"><i class="fa fa-angle-right"></i>Students</a></li>
+                <li><i class="fa fa-angle-right"></i><span>Enrolls</span></li>
             </ul>
         </div>
     </div>
-
-
 
     @if(count($courses)) @foreach($courses as $course)
 

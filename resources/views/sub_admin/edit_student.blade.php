@@ -19,6 +19,7 @@
         <div class="container">
             <ul>
                 <li><a href="{{url('/sdashboard')}}"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="/sadmin/students/"><i class="fa fa-angle-right"></i>Student</a></li>
                 <li><i class="fa fa-angle-right"></i><span>Edit Student</span></li>
             </ul>
         </div>
@@ -48,9 +49,9 @@
                             <div class="b-form-row b-form-inline b-form-horizontal">
                                 <div class="col-md-12 col-md-offset-2">
                                     <div class="b-form-row">
-                                        <label class="b-form-horizontal__label" for="create_account_email">Student ID</label>
+{{--                                         <label class="b-form-horizontal__label" for="create_account_email">Student ID</label> --}}
                                         <div class="b-form-horizontal__input">
-                                            <input type="text" value="{{$std->student_id}}" required="" name="student_id" id="create_account_email" readonly="" class="form-control"
+                                            <input type="hidden" value="{{$std->student_id}}" required="" name="student_id" id="create_account_email" readonly="" class="form-control"
                                             />
                                         </div>
                                     </div>
