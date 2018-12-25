@@ -26,7 +26,7 @@ class SiteController extends Controller
     public function search_courses(Request $request)
     {
         $pg = 15;
-        $courses = Course::where('name', 'like', '%' . $request->search . '%')->paginate(6);
+        $courses = Course::where('name', 'like', '%' . $request->search . '%')->paginate(3);
         if (!is_null($courses)) {
             return view('search', compact(['pg', 'courses']));
         }

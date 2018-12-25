@@ -24,21 +24,10 @@
       </ul>
     </div>
   </div>
- 
+
 
   <div class="container">
-    @if (session()->has('success'))
-    <div class="b-shortcode-example">
-      <div class="b-alert-success f-alert-success">
-        <div class="b-right">
-          <i class="fa fa-times-circle-o"></i>
-        </div>
-        <div class="b-remaining">
-          <i class="fa fa-check-circle-o"></i> {{session()->get('success')}}
-        </div>
-      </div>
-    </div>
-    @endif @if (session()->has('error'))
+    @if (session()->has('error'))
     <div class="b-shortcode-example">
       <div class="b-alert-warning f-alert-warning">
         <div class="b-right">
@@ -50,16 +39,18 @@
       </div>
     </div>
   </div>
-  
-  @endif @if(!is_null($courses))
+
+  @endif 
+  @if(count($courses))
   <div class="b-pagination"> {{ $courses->links() }}</div>
   <div class="row">
     <div class="b-education-box b-infoblock">
+     <div class="b-some-examples f-some-examples f-secondary row">
       @foreach($courses as $course)
       <div class="col-sm-4 col-xs-12">
         <div class="b-some-examples__item f-some-examples__item">
           <div class="b-some-examples__item_img view view-sixth">
-            <a href="#"><img class="j-data-element" data-animate="fadeInDown" style="height: 200px;" data-retina src="/img/courses/{{$course->img}}" alt=""/></a>
+            <a href="{{url('course/details',['id'=>$course->id])}}"><img class="j-data-element" data-animate="fadeInDown" style="height: 200px;" data-retina src="img/courses/{{$course->img}}" alt=""/></a>
             <div class="b-item-hover-action f-center mask">
               <div class="b-item-hover-action__inner">
                 <div class="b-item-hover-action__inner-btn_group">
@@ -80,11 +71,12 @@
           </div>
           <div class="b-some-examples__item_action">
             @if(!auth()->guard('instructor')->user()&&!auth()->guard('subadmin')->user()&&!auth()->guard('admin')->user())
+    
             <div class="b-right">
               <a href="{{url('course/apply',['id'=>$course->id])}}" class="b-btn f-btn b-btn-sm f-btn-sm b-btn-default f-secondary-b">Apply now</a>
             </div>
             @endif @if(auth()->guard('admin')->user())
-
+    
             <div class="b-right">
               <a href="{{url('course/applicants',['id'=>$course->id])}}" class="b-btn f-btn b-btn-sm f-btn-sm b-btn-default f-secondary-b">Applicants</a>
             </div>
@@ -95,17 +87,17 @@
       </div>
       @endforeach
     </div>
-  </div>
-  @else
-  <div class="row b-shortcode-example">
-    <div class="col-md-8 col-md-offset-2">
-      <div class="b-tagline-box b-tagline-box--big">
-        <div class="f-tagline_description b-tagline_description">
-          <p style="font-size:20px;text-align:center"></p>
+
+    @else
+    <div class="row b-shortcode-example">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="b-tagline-box b-tagline-box--big">
+          <div class="f-tagline_description b-tagline_description">
+            <p style="font-size:20px;text-align:center">No results for your search </p>
+          </div>
         </div>
       </div>
     </div>
+    @endif
   </div>
-  @endif
-</div>
 @endsection
