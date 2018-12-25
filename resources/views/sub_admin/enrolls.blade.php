@@ -25,7 +25,7 @@
     </div>
     
     <?php $cnt=0; ?> @foreach($courses as $course)
-    <?php $apps=App\Application::where('course_id','=',$course->id)->where('status',0)->get();
+    <?php $apps=App\Application::where('course_id','=',$course->id)->/* where('status',0)-> */get();
     ?> @if($apps->isNotEmpty()) @foreach($apps as $app)
     <?php $cnt++;?>
     <div class="row b-shortcode-example">

@@ -23,7 +23,7 @@
             </ul>
         </div>
     </div>  
-    <?php $apps=App\Application::paginate(10);?>
+    <?php $apps=App\Application::paginate(5);?>
     @if($apps->isNotEmpty()) @foreach($apps as $app)
     <div class="b-pagination"> {{ $apps->links() }}</div>
     <div class="row b-shortcode-example">
@@ -40,7 +40,7 @@
                 <label style="color: green;">Account#: </label> {{$app->acc_no}}
                 <br>
                 <br>
-                <label style="color: green;">Notes: </label> {{$app->notes}}
+                {{-- <label style="color: green;">Notes: </label> {{$app->notes}} --}}
                 <br> @if($app->status==0)
                 <div class="b-tagline_btn f-center b-tagline_btn--right">
                     <a href="{{url('inv/accept',['id'=>$app->id])}}" class="button-sm button-green-bright"><i class="fa fa-check"></i></a>
