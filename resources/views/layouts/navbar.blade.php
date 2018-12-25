@@ -5,7 +5,7 @@
             <div class="b-header-ico-group f-header-ico-group b-right">
                 <form action="{{url('/courses/search')}}" method="get">
                     <span class="b-search-box">
-              <i class="fa fa-search"  style="padding-top: 35px;"></i>
+              <i class="fa fa-search"  style="padding-top: 75px;"></i>
               <input type="text" name="search" placeholder="by course name"/>
              </span>
                 </form>
