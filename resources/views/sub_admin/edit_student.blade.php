@@ -18,7 +18,7 @@
     <div class="b-breadcrumbs f-breadcrumbs">
         <div class="container">
             <ul>
-                <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="{{url('/sdashboard')}}"><i class="fa fa-home"></i>Home</a></li>
                 <li><i class="fa fa-angle-right"></i><span>Edit Student</span></li>
             </ul>
         </div>

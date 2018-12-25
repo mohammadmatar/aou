@@ -17,12 +17,13 @@
     <div class="b-breadcrumbs f-breadcrumbs">
         <div class="container">
             <ul>
-                <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="{{url('/sdashboard')}}"><i class="fa fa-home"></i>Home</a></li>
                 <li><a href=""><i class="fa fa-angle-right"></i>Instructor</a></li>
                 <li><i class="fa fa-angle-right"></i><span>Requests</span></li>
             </ul>
         </div>
     </div>
+    
     <?php $cnt=0; ?> @foreach($courses as $course)
     <?php $apps=App\Application::where('course_id','=',$course->id)->where('status',0)->get();
     ?> @if($apps->isNotEmpty()) @foreach($apps as $app)
@@ -32,7 +33,7 @@
 
 
             <div class="b-tagline-box b-tagline-box--big">
-                <center><img src="/img/{{$app->inv_img}}" style="height: 150px; width: 200px;"></center>
+                <center><img src="/img/invoices/{{$app->inv_img}}" style="height: 150px; width: 200px;"></center>
                 <label style="color: green;">Name: </label> {{App\Student::where('id','=',$app->student_id)->first()->name}}<br>
                 <label style="color: green;">Branch: </label> {{$course->branch->name}}
                 <br>

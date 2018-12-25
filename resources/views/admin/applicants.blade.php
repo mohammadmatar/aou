@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.adminMaster')
 @section('title')
 Applicants | AOU
 @endsection
@@ -18,7 +18,7 @@ Applicants | AOU
     <div class="b-breadcrumbs f-breadcrumbs">
         <div class="container">
             <ul>
-                <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="{{url('/adashboard')}}"><i class="fa fa-home"></i>Home</a></li>
                 <li><i class="fa fa-angle-right"></i><span>Applicants</span></li>
             </ul>
         </div>

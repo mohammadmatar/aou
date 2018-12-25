@@ -123,7 +123,7 @@
         <div class="col-sm-4 col-xs-12">
           <div class="b-some-examples__item f-some-examples__item">
             <div class="b-some-examples__item_img view view-sixth">
-              <a href="{{url('course/details',['id'=>$course->id])}}"><img class="j-data-element" data-animate="fadeInDown" style="height: 200px;" data-retina src="img/{{$course->img}}" alt=""/></a>
+              <a href="{{url('course/details',['id'=>$course->id])}}"><img class="j-data-element" data-animate="fadeInDown" style="height: 200px;" data-retina src="img/courses/{{$course->img}}" alt=""/></a>
               <div class="b-item-hover-action f-center mask">
                 <div class="b-item-hover-action__inner">
                   <div class="b-item-hover-action__inner-btn_group">
@@ -171,7 +171,7 @@
           <div class="col-md-3 col-sm-3 col-xs-6">
             <div class="b-employee-item b-employee-item--color f-employee-item">
               <div class=" view view-sixth">
-                <a href="{{url('/inst/profile',['id'=>$instructor->id])}}"><img class="j-data-element" style="height: 250px;" data-animate="fadeInDown" data-retina src="/img/{{$instructor->img}}" alt=""/></a>
+                <a href="{{url('/inst/profile',['id'=>$instructor->id])}}"><img class="j-data-element" style="height: 250px;" data-animate="fadeInDown" data-retina src="/img/instructors/{{$instructor->img}}" alt=""/></a>
                 <div class="b-item-hover-action f-center mask">
                   <div class="b-item-hover-action__inner">
                     <div class="b-item-hover-action__inner-btn_group">
@@ -199,11 +199,11 @@
           <i class="fa fa-university"></i><br/>
           <span class="f-b f-secondary-b">AOU</span>
         </div>
-        <p class="b-info-container__text f-info-container__text f-secondary-l-it">The Arab Open University (AOU) is a sustainable development and educational non-profit project. It was founded by
-          HRH Prince Talal Bin Abdul-Aziz, Chairman of the AOU Board of Trustees. In September 2000, AOU was officially declared
-          in the meeting of Arab ministers of higher education where five Arab countries offered to host the headquarters
-          of AOU. Among them was Kuwait that was chosen to be the headquarters of AOU in December 2000. Today AOU has eight
-          branches in Kuwait, Lebanon, Jordan, Saudi Arabia, Egypt, Bahrain, Oman and Sudan. <a href="http://aou.dev">http://aou.dev</a></p>
+        <p class="b-info-container__text f-info-container__text f-secondary-l-it">The idea of establishing a non-profit Open University in the Arab world was initiated by HRH Prince Talal Bin Abdulaziz,
+        President of the Arab Gulf Development Programe (AGFUND). In 1996 HRH Prince Talal officially announced the concept of establishing
+        the Arab Open University as a non-conventional academic institution and as a foundation which contributes to steering development
+        in scientific, social and cultural spheres. This initiative developed to a full pledged Arab Open University in 2002 in a
+        strategic partnership with the Open University in the United Kingdom.<a href="http://web.arabou.edu.sa">http://web.arabou.edu.sa</a></p>
       </div>
     </div>
 </div>

@@ -45,14 +45,15 @@
                         {{csrf_field()}}
                         <div class="b-form-row b-form-inline b-form-horizontal">
                             <div class="col-md-12 col-md-offset-2">
+                                {{--
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Instructor ID</label>
                                     <div class="b-form-horizontal__input">
                                         <input type="text" value="{{App\Sign::max('instructor_id')+1}}" required="" name="instructor_id" id="instructor_id" readonly=""
                                             class="form-control" />
                                     </div>
-                                </div>
-
+                                </div> --}}
+                                <input type="hidden" value="{{App\Sign::max('instructor_id')+1}}" required="" name="instructor_id" id="instructor_id">
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Name</label>
                                     <div class="b-form-horizontal__input">
@@ -75,7 +76,8 @@
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Phone Number</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="form-control" />
+                                        <input type="text" required="" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="form-control"
+                                        />
                                     </div>
                                 </div>
 
@@ -98,6 +100,13 @@
                                     <label class="b-form-horizontal__label" for="img">Your CV: </label>
                                     <div class="b-form-horizontal__input">
                                         <input type="file" name="cv" id="cv" required="" class="btn btn-success btn-file" style=" height: 40px; width: 265px;" />
+                                    </div>
+                                </div>
+
+                                <div class="b-form-row">
+                                    <label class="b-form-horizontal__label" for="create_account_email">Your Photo</label>
+                                    <div class="b-form-horizontal__input">
+                                        <input type="file" name="img" id="img" class="btn btn-success btn-file" style=" height: 40px; width: 265px;" />
                                     </div>
                                 </div>
 

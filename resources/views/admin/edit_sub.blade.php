@@ -19,7 +19,7 @@ Edit Sub Admin | AOU
     <div class="b-breadcrumbs f-breadcrumbs">
         <div class="container">
             <ul>
-                <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="{{url('/adashboard')}}"><i class="fa fa-home"></i>Home</a></li>
                 <li><a href="{{url('/admin/sub')}}"><i class="fa fa-angle-right"></i><span>Sub Admins</span></a></li>
                 <li><i class="fa fa-angle-right"></i><span>Edit Sub Admin</span></li>
             </ul>

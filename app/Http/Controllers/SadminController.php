@@ -9,6 +9,7 @@ use App\Mail\Welcome;
 use App\Request as Srequest;
 use App\Student;
 use App\SubAdmin;
+use App\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -70,7 +71,7 @@ class SadminController extends Controller
 
     public function sadmin_requests()
     {
-        $reqs = Srequest::where('sub_status', '=', '0')->get();
+        $reqs = Srequest::where('sub_status', '=', '0')->where('admin_status','=','1')->paginate(5);
         $pg = 7;
         return view('sub_admin.requests', compact(['pg', 'reqs']));
     }
@@ -100,7 +101,7 @@ return back()->with(['message' => 'please enter valid ID and password']);
         if (!auth()->guard('subadmin')->attempt(request(['sub_admin_id', 'password'], $remmberme))) {
             return back()->with(['error' => 'please enter valid ID and password']);
         }
-        return redirect()->intended(route('sub_admin.dashboard'));
+        return redirect(route('sub_admin.dashboard'));
     }
 
     public function accept($id)
@@ -251,6 +252,40 @@ return back()->with(['message' => 'please enter valid ID and password']);
         $pg = 28;
         return view('sub_admin.instructors', compact(['pg', 'insts']));
     }
+
+    public function enrolls()
+    {
+      
+       /*  $instructor = Instructor::find(auth()->guard('instructor')->user()->id);
+        $courses = $instructor->courses;
+        return view('instructor.enrolls', compact(['pg', 'courses']));
+ */
+        $pg = 11;
+        $courses = Instructor::paginate(5);
+        dd("This page under construction ".$courses);
+        return view('sub_admin.enrolls', compact(['pg', 'courses']));
+    }
+
+    public function instructor_profile($id)
+    {
+        $pg = 38;
+        $profile = Instructor::find($id);
+        return view('sub_admin.instructor_profile', compact(['profile', 'pg']));
+    }
+
+    public function edit_inst($id)
+    {
+        $pg = 28;
+        $instructor = Instructor::find($id);
+        return view('sub_admin.edit_instructor', compact(['pg', 'instructor']));
+    }
+
+    public function del_inst($id)
+    {
+        $sub = Instructor::find($id)->delete();
+        return back()->with(['success' => 'successfully deleted...']);
+    }
+
 
     public function del_std($id)
     {

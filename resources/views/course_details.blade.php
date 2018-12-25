@@ -62,7 +62,7 @@ Course detail | AOU
                 </div>
                 <div class="b-portfolio-slider-box__items">
                     <div class="b-slider-images j-slider-images">
-                        <img class="" data-retina="" style="height: 400px; width: 250px;" src="/img/{{$course->img}}" alt="">
+                        <img class="" data-retina="" style="height: 400px; width: 250px;" src="/img/courses/{{$course->img}}" alt="">
                     </div>
                 </div>
             </div>

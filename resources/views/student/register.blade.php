@@ -47,13 +47,13 @@
                         {{csrf_field()}}
                         <div class="b-form-row b-form-inline b-form-horizontal">
                             <div class="col-md-12 col-md-offset-2">
-                                <div class="b-form-row">
+                              {{--   <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Student ID</label>
                                     <div class="b-form-horizontal__input">
                                         <input type="text" value="{{App\Student::max('student_id')+1}}" required="" name="student_id" id="create_account_email" readonly=""
                                             class="form-control" />
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Name</label>
@@ -122,13 +122,13 @@
                                     </div>
                                 </div>
                                 
-                                <div class="b-form-row">
+                               {{--  <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Photo</label>
                                     <div class="b-form-horizontal__input">
                                         <input type="file" name="img" id="img" class="btn btn-success btn-file" style=" height: 40px; width: 265px;"/>
                                     </div>
                                 </div>
-                                
+                                 --}}
                               {{--   <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Photo</label>
                                     <div class="b-form-horizontal__input b-form-control__icon-wrap">

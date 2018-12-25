@@ -44,10 +44,12 @@ class InstructorController extends Controller
 
         $validator = $this->validate(request(), [
             'name' => 'string|min:2|max:255',
-            'email' => 'required|email|unique:instructors,email,' . $request->id,
+            'email' => 'required|email|unique:instructors,email,'.$request->id,
             'password' => 'min:6',
             'phone_number' => 'min:8',
             'cv' => 'mimes:pdf',
+            'img' => 'mimes:jpeg,png,jpg,gif,svg',
+
         ]);
 
         $instructor = Instructor::where('email', $request->email)->first();
@@ -65,6 +67,13 @@ class InstructorController extends Controller
                 $path = 'uploads/cv';
                 $file->move($path, $filename);
                 $instructor->cv = $filename;
+            }
+            if (!is_null($request->file('img'))) {
+                $fileimg = $request->file('img');
+                $filenameimg = time() . '.' . $fileimg->getClientOriginalName();
+                $pathimg = 'img/instructors';
+                $fileimg->move($pathimg, $filenameimg);
+                $instructor->img = $filenameimg;
             } 
             $instructor->update();
             return back()->with('success', ' Profile updated successfully');

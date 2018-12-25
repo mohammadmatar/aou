@@ -27,18 +27,18 @@
           <div class="b-footer-logo-text f-footer-logo-text">
           <p>start with us to strengthen yours skills to meet the market needs .</p>
           <div class="b-btn-group-hor f-btn-group-hor">
-            <a href="#" class="b-btn-group-hor__item f-btn-group-hor__item">
+            <a href="https://twitter.com/AOU_KSAB" class="b-btn-group-hor__item f-btn-group-hor__item">
               <i class="fa fa-twitter"></i>
             </a>
-            <a href="#" class="b-btn-group-hor__item f-btn-group-hor__item">
+            <a href="https://web.facebook.com/ArabOpenUniversity.Ksa/" class="b-btn-group-hor__item f-btn-group-hor__item">
               <i class="fa fa-facebook"></i>
             </a>
-            <a href="#" class="b-btn-group-hor__item f-btn-group-hor__item">
+            {{-- <a href="#" class="b-btn-group-hor__item f-btn-group-hor__item">
               <i class="fa fa-dribbble"></i>
             </a>
             <a href="#" class="b-btn-group-hor__item f-btn-group-hor__item">
               <i class="fa fa-behance"></i>
-            </a>
+            </a> --}}
           </div>
         </div>
       </div>

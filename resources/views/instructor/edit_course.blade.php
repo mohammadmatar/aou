@@ -81,13 +81,12 @@ Edit Courses | AOU
                       </div>
 
                       <div class="b-form-row">
-                          <label class="b-form-horizontal__label" for="create_account_email">Photo</label>
-                          <div class="b-form-horizontal__input b-form-control__icon-wrap">
-                              <span class="btn btn-warning btn-file" style="margin-bottom: 10px;">
-                           <i class="fa fa-image"></i> Choose photo <input type="file" required="" name="img" style=" opacity:0; height: 15px; width: 150px;" name="imgs">
-                              </span>
-                          </div>
-                      </div>
+                            <label class="b-form-horizontal__label" for="create_account_email">Photo</label>
+                            <div class="b-form-horizontal__input">
+                                <input type="file" name="img" id="img" class="btn btn-success btn-file" style=" height: 40px; width: 265px;" />
+                            </div>
+                        </div>
+
                       <div class="b-form-row">
                                 <label class="b-form-horizontal__label" for="create_account_password">Level</label>
                                 <div class="b-form-horizontal__input">

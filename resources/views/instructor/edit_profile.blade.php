@@ -84,9 +84,16 @@
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="img">Your CV: </label>
                                     <div class="b-form-horizontal__input">
-                                          <input type="file" name="cv" id="cv" value="/uploads/{{$instructor->cv}}" class="btn btn-success btn-file"
+                                          <input type="file" name="cv" id="cv"  class="btn btn-success btn-file"
                                             style=" height: 40px; width: 265px;" />
                                      </div>
+                                </div>
+
+                                <div class="b-form-row">
+                                    <label class="b-form-horizontal__label" for="img">photo: </label>
+                                    <div class="b-form-horizontal__input">
+                                        <input type="file" name="img" id="img"  class="btn btn-success btn-file" style=" height: 40px; width: 265px;" />
+                                    </div>
                                 </div>
                               
                                 <div class="b-form-row">

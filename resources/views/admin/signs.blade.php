@@ -17,7 +17,7 @@
   <div class="b-breadcrumbs f-breadcrumbs">
     <div class="container">
       <ul>
-        <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
+        <li><a href="{{url('/adashboard')}}"><i class="fa fa-home"></i>Home</a></li>
         {{--
         <li><a href=""><i class="fa fa-angle-right"></i>Sign</a></li> --}}
         <li><i class="fa fa-angle-right"></i><span>Signs Requests</span></li>
@@ -32,7 +32,7 @@
       <div class="b-shortcode-example f-center">
         <div class="b-mention-item b-mention-item--vertically">
           <div class="b-mention-item__user_img" style="height: 120px; width: 120px;">
-            <img data-retina src="/img/default-user.png" alt="">
+            <img data-retina src="/img/instructors/{{$req->img}}" alt="">
 
           </div>
           <div class="b-mention-item__comment">

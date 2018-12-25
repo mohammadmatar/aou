@@ -115,15 +115,18 @@ Route::group(['middleware' => 'sadmin:subadmin'], function () {
     Route::post('/sadmin/savstd', 'SadminController@save_std');
     Route::post('/sadmin/editstd', 'SadminController@ed_std');
     Route::get('/sadmin/instructors', 'SadminController@show_instructors');
-    Route::get('/sadmin/instedit/{id}', 'AdminController@edit_inst');
+    Route::get('/sadmin/instedit/{id}', 'SadminController@edit_inst');
+   /*  Route::post('/admin/editinst', 'AdminController@ed_inst'); */
     Route::get('/sadmin/addinst', 'AdminController@add_inst');
-    Route::get('/sadmin/delinst/{id}', 'AdminController@del_inst');
+    Route::get('/sadmin/delinst/{id}', 'SadminController@del_inst');
     Route::post('/sadmin/savinst', 'AdminController@save_inst');
     Route::post('/sadmin/editinst', 'AdminController@ed_inst');
     Route::get('/student/profile/{id}', 'SadminController@student_profile');
-    Route::get('/sinstructor/profile/{id}', 'InstructorController@my_profile');
+    Route::get('/sinstructor/profile/{id}', 'SadminController@instructor_profile');
 
      Route::get('/admin/brnedit1/{id}', 'SadminController@edit_brn');
+    Route::get('/std_sadmin/enrolls', 'SadminController@enrolls');
+
     /* Route::get('/student/enrolls', 'SadminController@enrolls'); */
   });
 

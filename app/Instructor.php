@@ -15,7 +15,7 @@ class Instructor extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'instructor_id', 'password','name','address',
+        'instructor_id', 'password','name','address','email',
     ];
 
     /**

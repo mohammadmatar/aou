@@ -7,12 +7,12 @@ use App\Course;
 use App\Field;
 use App\Http\Requests\SignRequest;
 use App\Instructor;
+use App\Mail\Welcome;
 use App\Sign;
 use App\Student;
-use Mail;
-use App\Mail\Welcome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Mail;
 
 class SiteController extends Controller
 {
@@ -66,13 +66,13 @@ class SiteController extends Controller
 
     public function sign(SignRequest $request)
     {
-
         $validator = $this->validate(request(), [
             'name' => 'required|string|min:2|max:255',
-            'email' => 'required|email|unique:instructors,email,' . $request->id,
+            'email' => 'required|email|max:255|unique:signs,email',
             'password' => 'required|min:6',
             'phone_number' => 'numeric|min:8',
             'cv' => 'required|mimes:pdf',
+            'img' => ' mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         if ($validator) {
@@ -86,11 +86,21 @@ class SiteController extends Controller
             $sign->password = Hash::make($request->password);
             $sign->token = str_random(25) . time();
             $sign->status = 0;
-            $file = $request->file('cv');
-            $filename = time() . '.' . $file->getClientOriginalName();
-            $path = 'uploads/cv';
-            $file->move($path, $filename);
-            $sign->cv = $filename;
+            $filecv = $request->file('cv');
+            if (!is_null($filecv)) {
+                $filenamecv = time() . '.' . $filecv->getClientOriginalName();
+                $pathcv = 'uploads/cv';
+                $filecv->move($pathcv, $filenamecv);
+                $sign->cv = $filenamecv;
+            }
+             $fileimg = $request->file('img');
+            if (!is_null($fileimg)) {
+                $filenameimg = time() . '.' . $fileimg->getClientOriginalName();
+                $pathimg = 'img/instructors';
+                $fileimg->move($pathimg, $filenameimg);
+                $sign->img = $filenameimg;
+            }
+
             $sign->save();
             //Mail::to($sign)->send(new Welcome($sign));
 

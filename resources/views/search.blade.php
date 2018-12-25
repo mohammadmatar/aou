@@ -59,7 +59,7 @@
       <div class="col-sm-4 col-xs-12">
         <div class="b-some-examples__item f-some-examples__item">
           <div class="b-some-examples__item_img view view-sixth">
-            <a href="#"><img class="j-data-element" data-animate="fadeInDown" style="height: 200px;" data-retina src="/img/{{$course->img}}" alt=""/></a>
+            <a href="#"><img class="j-data-element" data-animate="fadeInDown" style="height: 200px;" data-retina src="/img/courses/{{$course->img}}" alt=""/></a>
             <div class="b-item-hover-action f-center mask">
               <div class="b-item-hover-action__inner">
                 <div class="b-item-hover-action__inner-btn_group">

@@ -4,7 +4,7 @@ Change Password Balance Enquiry Mini Statement Customized Statement Login & Logo
 
 
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#{{-- user profile --}}">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{url('/sadmin/profile',['id'=>auth()->guard('subadmin')->user()])}}"">
         @auth
         {{ Auth::guard('subadmin')->user()->name }}
          @endauth

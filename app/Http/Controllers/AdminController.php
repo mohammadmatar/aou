@@ -358,6 +358,7 @@ class AdminController extends Controller
         $instructor->phone_number = $sign->phone_number;
         $instructor->address = $sign->address;
         $instructor->cv = $sign->cv;
+        $instructor->img = $sign->img;
         $instructor->password = $sign->password;
         $sign->status = 1;
         $instructor->status = 1;
@@ -383,7 +384,7 @@ class AdminController extends Controller
             return back()->with(['error' => 'please enter valid ID and password']);
         }
 
-        return redirect()->intended(route('admin.dashboard'));
+        return redirect(route('admin.dashboard'));
     }
 
     public function logout()
