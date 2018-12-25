@@ -63,21 +63,21 @@
                             </ul>
                         </div>
                     </li>@endif
- --}}                     @if(auth()->guard('instructor')->user()) {{--||auth()->guard('instructor')->user())--}}
-                    <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==34){echo 'is-active-top-nav__1level';}?> f-primary-b">
+ --}}                     {{-- @if(auth()->guard('subadmin')->user()) {{--||auth()->guard('instructor')->user())
+                    <li class="b-top-nav__1level f-top-nav__1level  if($pg==34){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="#"><i class="fa fa-folder-open b-menu-1level-ico"></i>Students<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                         <div class="b-top-nav__dropdomn">
                             <ul class="b-top-nav__2level_wrap">
                                 {{-- @if(auth()->guard('subadmin')->user())
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/sadmin/students')}}"><i class="fa fa-angle-right"></i>View All</a></li>
-                                @endif --}} {{-- @if(auth()->guard('instructor')->user()) --}}
+                                @endif  @if(auth()->guard('instructor')->user())
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/instr/students')}}"><i class="fa fa-angle-right"></i>View All</a></li>
                                 <li class="b-top-nav__2level f-top-nav__2level f-primary"><a href="{{url('/instructor/enrolls')}}"><i class="fa fa-angle-right"></i>Enrolls</a></li>
                                 @endif
                             </ul>
                         </div>
                     </li>
-                    @endif @if(!auth()->guard('admin')->user())
+                    @endif --}} @if(!auth()->guard('admin')->user())
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==9){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="#"><i class="fa fa-folder-open b-menu-1level-ico"></i>Branches<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                         <div class="b-top-nav__dropdomn">
@@ -134,7 +134,7 @@
                             </ul>
                         </div>
                     </li>
-                    @endif{{--  @if(auth()->guard('subadmin')->user())
+                    @endif @if(auth()->guard('subadmin')->user())
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==0){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="#"><i class="fa fa-folder-open b-menu-1level-ico"></i>{{auth()->guard('subadmin')->user()->name}}<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                         <div class="b-top-nav__dropdomn">
@@ -150,7 +150,7 @@
                             </ul>
                         </div>
                     </li>
-                    @endif  --}}@if(auth()->guard('student')->user())
+                    @endif @if(auth()->guard('student')->user())
                     <li class="b-top-nav__1level f-top-nav__1level <?php if($pg==0){echo 'is-active-top-nav__1level';}?> f-primary-b">
                         <a href="#"><i class="fa fa-folder-open b-menu-1level-ico"></i>{{auth()->guard('student')->user()->name}}<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
                         <div class="b-top-nav__dropdomn">
