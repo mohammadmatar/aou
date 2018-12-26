@@ -73,7 +73,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="b-tagline-box b-tagline-box--big">
                 <div class="f-tagline_description b-tagline_description">
-                    <p style="font-size:20px;text-align:center"> No enrolls in your courses yet.</p>
+                    <p style="font-size:20px;text-align:center"> No enrolls in courses yet.</p>
                 </div>
             </div>
         </div>

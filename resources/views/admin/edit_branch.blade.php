@@ -49,14 +49,14 @@
                             <div class="col-md-12 col-md-offset-2">
                                 <input type="hidden" value="{{$brn->id}}" name="bid" />
                                 <div class="b-form-row">
-                                    <label class="b-form-horizontal__label" for="create_account_email">Name</label>
+                                    <label class="b-form-horizontal__label" for="create_account_email">Branch Name</label>
                                     <div class="b-form-horizontal__input">
                                         <input type="text" required="" value="{{$brn->name}}" name="name" id="create_account_email" class="form-control" />
                                     </div>
                                 </div>
 
                                 <div class="b-form-row">
-                                    <label class="b-form-horizontal__label" for="create_account_email">Location</label>
+                                    <label class="b-form-horizontal__label" for="create_account_email">Branch Location</label>
                                     <div class="b-form-horizontal__input">
                                         <input type="text" required="" value="{{$brn->location}}" name="location" id="create_account_email" class="form-control"
                                         />
@@ -74,7 +74,7 @@
                                           <option value="{{$brn->sub_admin_id}}">{{$branch->name}}</option>
                                             @endif
                                           @endif
-                                          <option value=""></option>
+                                          <option value="">Please Select Branch Admin</option>
                                            @foreach(App\SubAdmin::all() as $sub)
                                             @if($sub->id !== $brn->sub_admin_id)
                                             <option value="{{$sub->id}}">{{$sub->name}}</option>

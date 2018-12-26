@@ -38,6 +38,21 @@
             </div>
         </div>
         @endif
+        @if (count($errors))
+        <div class="b-shortcode-example">
+            <div class="b-alert-warning f-alert-warning">
+                <div class="b-right">
+                    <i class="fa fa-times-circle-o"></i>
+                </div>
+                <div class="b-remaining" <i class="fa fa-exclamation-triangle">
+                    </i>
+                    @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="b-form">
@@ -49,14 +64,14 @@
                         <div class="b-form-row b-form-inline b-form-horizontal">
                             <div class="col-md-12 col-md-offset-2">
                                 <div class="b-form-row">
-                                    <label class="b-form-horizontal__label" for="create_account_email">Name</label>
+                                    <label class="b-form-horizontal__label" for="create_account_email">Branch Name</label>
                                     <div class="b-form-horizontal__input">
                                         <input type="text" required="" name="name" id="create_account_email" class="form-control" />
                                     </div>
                                 </div>
 
                                 <div class="b-form-row">
-                                    <label class="b-form-horizontal__label" for="create_account_email">Location</label>
+                                    <label class="b-form-horizontal__label" for="create_account_email">Branch Location</label>
                                     <div class="b-form-horizontal__input">
                                         <input type="text" required="" name="location" id="create_account_email" class="form-control" />
                                     </div>
@@ -66,6 +81,7 @@
                                     <label class="b-form-horizontal__label" for="create_account_email">Sub Admin</label>
                                     <div class="b-form-horizontal__input b-form-select c-arrow-secondary">
                                         <select required="" class="j-select" name="sub_admin_id">
+                                            <option value="">Please select branch admin</option>
                                     @foreach(App\SubAdmin::all() as $sub)
                                         <option value="{{$sub->id}}">{{$sub->name}}</option>
                                     @endforeach

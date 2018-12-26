@@ -55,7 +55,7 @@
                                         </div>
                                     </div> --}}
 
-                                    <input type="hidden" value="{{$instructor->id}}" name="id" />
+                                    <input type="hidden" value="{{$instructor->id}}" name="id" id="id" />
 
                                     <div class="b-form-row">
                                         <label class="b-form-horizontal__label" for="create_account_email">Email</label>

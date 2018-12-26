@@ -9,6 +9,7 @@ use App\Contact;
 use App\Course;
 use App\Instructor;
 use App\Request as Arequest;
+use App\Request as Srequest;
 use App\Sign;
 use App\Student;
 use App\SubAdmin;
@@ -132,10 +133,10 @@ class AdminController extends Controller
     {
         $validator = $this->validate(request(), [
             'name' => 'required|string|min:2|max:255',
-            'email' => 'required|email|unique:sub_admins,email,' . $request->id,
+            'email' => 'required|email|max:255|unique:sub_admins',
             'password' => 'required|min:6',
             'phone_number' => 'numeric|min:8',
-            'img' => 'required|mimes:jpeg,png,jpg,gif,svg',
+            'img' => 'mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         if ($validator) {
@@ -157,9 +158,12 @@ class AdminController extends Controller
                 $sub->img = $filename;
             }
             $sub->role = 'sub_admin';
+            $sub->token = str_random(25) . time();
             $sub->save();
             return back()->with('success', ' Sub Admin added successfully');
         }
+        return back()->with('errors', $validator->errors);
+
     }
 
     public function save_brn(Request $request)
@@ -181,7 +185,7 @@ class AdminController extends Controller
             $sub->phone_number = $request->phone_number;
             $sub->address = $request->address;
             $sub->summary = $request->summary;
-            $sub->password = Hash::make($request->password);
+            /* $sub->password = Hash::make($request->password); */
             $file = $request->file('img');
             if ($file) {
                 $filename = time() . '.' . $file->getClientOriginalName();
@@ -196,9 +200,9 @@ class AdminController extends Controller
 
     public function ed_inst(Request $request)
     {
-        $instructor = Instructor::find($request->sid);
+        $instructor = Instructor::find($request->id);
         //$instructor = Instructor::where('email', $request->email)->first();
-
+        
         if ($instructor) {
             // $instructor->email = $request->email;
             $instructor->name = $request->name;
@@ -374,6 +378,17 @@ class AdminController extends Controller
         $sign->status = 2;
         $sign->save();
         return back();
+    }
+
+    public function refuse_course($id)
+    {
+        $req = Srequest::find($id);
+        $req->sub_status = 2;
+        $course = Course::find($req->course_id);
+        $course->status = 0;
+        $req->save();
+        $course->save();
+        return back();/* ->with('success','Course successfully rejected') */
     }
 
     public function check_login(Request $request)

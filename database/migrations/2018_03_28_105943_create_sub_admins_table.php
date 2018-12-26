@@ -24,6 +24,7 @@ class CreateSubAdminsTable extends Migration
             $table->string('password');
             $table->text('summary');
             $table->char('role');
+            $table->string('token', 254)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

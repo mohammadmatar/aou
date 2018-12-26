@@ -35,6 +35,22 @@
                 </div>
             </div>
         </div>
+       @endif 
+       @if (count($errors))
+           <div class="b-shortcode-example">
+            <div class="b-alert-warning f-alert-warning">
+                <div class="b-right">
+                    <i class="fa fa-times-circle-o"></i>
+                </div>
+                <div class="b-remaining"
+                    
+                     <i class="fa fa-exclamation-triangle"></i> 
+                     @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                </div>
+            </div>
+        </div>
         @endif
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -46,39 +62,46 @@
                         {{csrf_field()}}
                         <div class="b-form-row b-form-inline b-form-horizontal">
                             <div class="col-md-12 col-md-offset-2">
-
+                                <input type="hidden" value="{{App\SubAdmin::max('sub_admin_id')+1}}" name="sub_admin_id" id="sub_admin_id">
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Name</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="name" id="name" class="form-control" />
+                                        <input type="text" required="" name="name" id="name" value="{{ old('name') }}" class="form-control" />
                                     </div>
                                 </div>
 
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Email</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="email" id="email" class="form-control" />
+
+                                        <input name="email" id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
+                                            value="{{ old('email') }}" required> @if($errors->has('email'))
+                                        <span class="invalid-feedback">
+                                                                        <strong>{{ $errors->first('email') }}</strong>
+                                                                        </span> @endif
+
                                     </div>
                                 </div>
 
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Phone Number</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="phone_number" id="phone_number" class="form-control" />
+                                        <input type="text" required="" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="form-control"
+                                        />
                                     </div>
                                 </div>
 
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Address</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="address" id="address" class="form-control" />
+                                        <input type="text" required="" name="address" id="address" value="{{ old('address') }}" class="form-control" />
                                     </div>
                                 </div>
 
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Summary</label>
                                     <div class="b-form-horizontal__input">
-                                        <input type="text" required="" name="summary" id="summary" class="form-control" />
+                                        <input type="text" name="summary" id="summary" value="{{ old('summary') }}" class="form-control" />
                                     </div>
                                 </div>
 

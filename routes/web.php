@@ -68,7 +68,7 @@ Route::group(['middleware' => 'admin:admin'], function () {
     Route::get('/sign/accept/{id}', 'AdminController@accept_sign');
     Route::get('/sign/refuse/{id}', 'AdminController@refuse_sign');
     Route::get('/admin/accept/{id}', 'AdminController@accept');
-    Route::get('/admin/refuse/{id}', 'AdminController@refuse');
+    Route::get('/admin/refuse/{id}', 'AdminController@refuse_course');
     Route::get('/course/applicants/{id}', 'AdminController@applicants');
     Route::get('/admin/messages', 'AdminController@messages');
     Route::get('/admin/branches', 'AdminController@admin_branches');

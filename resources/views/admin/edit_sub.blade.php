@@ -38,6 +38,21 @@ Edit Sub Admin | AOU
             </div>
           </div>
     @endif
+    @if (count($errors))
+    <div class="b-shortcode-example">
+        <div class="b-alert-warning f-alert-warning">
+            <div class="b-right">
+                <i class="fa fa-times-circle-o"></i>
+            </div>
+            <div class="b-remaining" <i class="fa fa-exclamation-triangle">
+                </i>
+                @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    @endif
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="b-form">
@@ -101,12 +116,12 @@ Edit Sub Admin | AOU
                             </div>
                         </div>
                         
-                        <div class="b-form-row">
+                        {{-- <div class="b-form-row">
                             <label class="b-form-horizontal__label" for="create_account_email">Password</label>
                             <div class="b-form-horizontal__input">
                                 <input type="password" required="" name="password" id="create_account_email" class="form-control" />
                             </div>
-                        </div>
+                        </div> --}}
                         
                         <div class="b-form-row">
                             <div class="b-form-horizontal__label"></div>

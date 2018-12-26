@@ -23,7 +23,7 @@
             </ul>
         </div>
     </div>
-
+ 
     @if(count($courses)) @foreach($courses as $course)
 
     <?php $apps=App\Application::where('course_id','=',$course->id)->where('status','=','1')->get();?> @if(count($apps))

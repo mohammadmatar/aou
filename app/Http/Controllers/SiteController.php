@@ -160,7 +160,7 @@ class SiteController extends Controller
 
     public function home()
     {
-        $courses = Course::all()->take(3);
+        $courses = Course::where('status', '1')->take(3);
         $instructors = Instructor::all()->take(4);
         $fields = Field::all();
         $pg = 1;

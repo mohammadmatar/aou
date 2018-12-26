@@ -9,7 +9,7 @@
 <div class="b-inner-page-header f-inner-page-header b-bg-header-inner-page">
   <div class="b-inner-page-header__content">
     <div class="container">
-      <h1 class="f-primary-l c-default">Signs</h1>
+      <h1 class="f-primary-l c-default">Branches</h1>
     </div>
   </div>
 </div>
@@ -39,22 +39,22 @@
     <div class="col-md-8 col-md-offset-2 col-sm-8">
       <table class="table table-hovered table-bordered">
         <tr>
-          <th>Name</th>
+          <th>ID</th>
+          <th>Branch</th>
           <th>Admin</th>
-          <th>Location</th>
+         
           <th>Edit</th>
           <th>Delete</th>
         </tr>
         @foreach($branches as $branch)
         <tr>
+          <td>{{$branch->id}}</td>
           <td>{{$branch->name}}</td>
-          <td>
-         
+           <td>  
            @if(App\SubAdmin::where('id',$branch->sub_admin_id)->first())
             {{App\SubAdmin::where('id',$branch->sub_admin_id)->first()->name}}
             @endif  
           </td>
-          <td>{{$branch->location}}</td>
           <td><a href="{{url('admin/brnedit',['id'=>$branch->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a></td>
           <td><a href="{{url('admin/delbrn',['id'=>$branch->id])}}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td>
         </tr>

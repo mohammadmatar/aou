@@ -15,7 +15,8 @@ class SubAdmin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'sub_admin_id', 'password','address','name'
+        'student_id', 'password', 'name', 'address', 'email',
+
     ];
 
     /**
