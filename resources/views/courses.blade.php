@@ -57,6 +57,7 @@
         @if (count($courses))
         @foreach($courses as $course)
         <div class="col-sm-4 col-xs-12">
+          <div class="b-pagination"> {{ $courses->links() }}</div>
           <div class="b-some-examples__item f-some-examples__item">
             <div class="b-some-examples__item_img view view-sixth">
               <a href="#"><img class="j-data-element" data-animate="fadeInDown" style="height: 200px;" data-retina src="/img/courses/{{$course->img}}" alt=""/></a>
@@ -97,12 +98,12 @@
         @endforeach
         <div class="clearfix  hidden-sm"></div>
 
-        <div class="container" style="margin-left:400px;">
+       {{--  <div class="container" style="margin-left:400px;">
           {{-- <div class="b-pagination">
             {{$courses}}
-          </div> --}}
-          <div class="b-pagination"> {{ $insts->links() }}</div>
-        </div>
+          </div>  
+          <div class="b-pagination"> {{ $courses->links() }}</div>
+        </div> --}}
 
       </div>
     </div>

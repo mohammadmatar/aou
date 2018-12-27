@@ -46,9 +46,10 @@
           <th>Edit</th>
           <th>Delete</th>
         </tr>
-        @foreach($students as $student)
+        @foreach($students as $student) 
+        @foreach ($student as $std)
         <tr>
-          @foreach ($student as $std)
+        
           <td>{{$std->id}}</td>
           <td>
             @if(auth()->guard('subadmin')->user())

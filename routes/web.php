@@ -102,8 +102,8 @@ Route::group(['middleware' => 'sadmin:subadmin'], function () {
     Route::get('/sdashboard', 'SadminController@index')->name('sub_admin.dashboard');
     Route::any('/sadmin/logout', 'SadminController@logout')->name('sadmin.logout');
     Route::get('/sadmin/requests', 'SadminController@sadmin_requests');
-    Route::get('/sadmin/accept/{id}', 'SadminController@accept');
-    Route::get('/sadmin/refuse/{id}', 'SadminController@refuse');
+    Route::get('/sadmin/accept/{id}', 'SadminController@accept_course');
+    Route::get('/sadmin/refuse/{id}', 'SadminController@refuse_course');
     Route::get('/sadmin/profile', 'SadminController@edit_profile');
     Route::post('/sadmin/editbrn', 'AdminController@ed_brn');
     Route::post('/sadmin/editprofile', 'SadminController@update_profile');
@@ -119,13 +119,14 @@ Route::group(['middleware' => 'sadmin:subadmin'], function () {
    /*  Route::post('/admin/editinst', 'AdminController@ed_inst'); */
     Route::get('/sadmin/addinst', 'AdminController@add_inst');
     Route::get('/sadmin/delinst/{id}', 'SadminController@del_inst');
-    Route::post('/sadmin/savinst', 'AdminController@save_inst');
-    Route::post('/sadmin/editinst', 'AdminController@ed_inst');
+    Route::post('/sadmin/savinst', 'SadminController@save_inst');
+    Route::post('/sadmin/editinst', 'SadminController@ed_inst');
     Route::get('/student/profile/{id}', 'SadminController@student_profile');
     Route::get('/sinstructor/profile/{id}', 'SadminController@instructor_profile');
 
      Route::get('/admin/brnedit1/{id}', 'SadminController@edit_brn');
     Route::get('/std_sadmin/enrolls', 'SadminController@enrolls');
+    Route::get('/invoices/all', 'AdminController@invoices');
 
     /* Route::get('/student/enrolls', 'SadminController@enrolls'); */
   });

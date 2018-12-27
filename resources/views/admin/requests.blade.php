@@ -33,7 +33,7 @@
     <div class="row b-shortcode-example">
         <div class="col-md-8 col-md-offset-2">
             <div class="b-tagline-box b-tagline-box--big">
-                <div class="b-tagline_title f-tagline_title f-primary-l">{{$course->instructor->name}}</div>
+                <div class="b-tagline_title f-tagline_title f-primary-l">Course Name : {{$course->instructor->name}}</div>
                 <div class="b-tagline_title f-tagline_title f-primary-l">{{$course->branch->name}} Branch</div>
                 <div class="b-tagline_btn f-center b-tagline_btn--right">
                     <a href="{{url('admin/accept',['id'=>$req->id])}}" class="button-sm button-green-bright"><i class="fa fa-check"></i></a>
@@ -42,7 +42,7 @@
                     <a href="{{url('admin/refuse',['id'=>$req->id])}}" class="button-sm button-red"><i class="fa fa-ban"></i></a>
                 </div>
                 <div class="f-tagline_description b-tagline_description">
-                    {{$course->summary}}
+                    Course Summary : {{$course->summary}}
                 </div>
 
             </div>

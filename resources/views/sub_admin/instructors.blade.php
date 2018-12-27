@@ -34,7 +34,8 @@
     </div>
   </div>
   @endif @if(!is_null($insts))
-  <div class="b-pagination"> {{ $insts->links() }}</div>
+
+  {{-- <div class="b-pagination"> {{ $insts->links() }}</div> --}}
   <div class="row b-shortcode-example">
     <div class="col-md-8 col-md-offset-2 col-sm-8">
       <table class="table table-hovered table-bordered table-stripped">
@@ -47,6 +48,7 @@
         </tr>
 
         @foreach($insts as $inst)
+        
         <tr>
           @if(auth()->guard('admin')->user())
           <td> <a href="{{url('/ainstructor/profile',['id'=>$inst->id])}}">{{$inst->name}}</a></td>

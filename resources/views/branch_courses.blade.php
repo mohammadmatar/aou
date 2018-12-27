@@ -93,7 +93,7 @@
           {{-- <div class="b-pagination">
             {{$courses}}
           </div> --}}
-          <div class="b-pagination"> {{ $insts->links() }}</div>
+          <div class="b-pagination"> {{ $courses->links() }}</div>
         </div>
 
       </div>

@@ -24,6 +24,8 @@ class CreateSignsTable extends Migration
             $table->text('address');
             $table->string('cv');
             $table->boolean('status')->default(0);
+            $table->integer('branch_id')->unsigned()->index();
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->string('token', 254)->nullable();
             $table->rememberToken();
             $table->timestamps();

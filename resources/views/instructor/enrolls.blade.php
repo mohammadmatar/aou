@@ -19,12 +19,13 @@
             <ul>
                 <li><a href="{{url('/')}}"><i class="fa fa-home"></i>Home</a></li>
                 <li><a href=""><i class="fa fa-angle-right"></i>Instructor</a></li>
-                <li><i class="fa fa-angle-right"></i><span>Requests</span></li>
+                <li><i class="fa fa-angle-right"></i><span>Enrolls</span></li>
             </ul>
         </div>
     </div>
  
-    @if(count($courses)) @foreach($courses as $course)
+    @if(count($courses) != 0) 
+    @foreach($courses as $course)
 
     <?php $apps=App\Application::where('course_id','=',$course->id)->where('status','=','1')->get();?> @if(count($apps))
      <div class="row b-shortcode-example">

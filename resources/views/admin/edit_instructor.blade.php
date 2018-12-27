@@ -41,14 +41,14 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="b-form">
                     <div class="f-primary-l f-title-big c-secondary">Edit Instructor Information</div>
-                    <hr class="b-hr" /> @if(auth()->guard('admin')->user())
+                    <hr class="b-hr" />
                     <form action="{{url('/admin/editinst')}}" method="post" enctype="multipart/form-data">
-                        @endif @if(auth()->guard('subadmin')->user())
-                        <form action="{{url('/sadmin/savinst')}}" method="post" enctype="multipart/form-data">
-                            @endif {{csrf_field()}}
+                        
+                        {{csrf_field()}}
                             <div class="b-form-row b-form-inline b-form-horizontal">
                                 <div class="col-md-12 col-md-offset-2">
-                                    {{-- <div class="b-form-row">
+                                    {{--
+                                    <div class="b-form-row">
                                         <label class="b-form-horizontal__label" for="create_account_email">Instructor ID</label>
                                         <div class="b-form-horizontal__input">
                                             <input type="text" value="{{$instructor->instructor_id}}" name="instructor_id" id="instructor_id" readonly="" class="form-control">
@@ -83,7 +83,23 @@
                                         </div>
                                     </div>
 
-  
+                                    <div class="b-form-row">
+                                        <label class="b-form-horizontal__label" for="create_account_email">Branch</label>
+                                        <div class="b-form-horizontal__input b-form-select c-arrow-secondary">
+
+                                            <select required="" class="j-select" name="branch_id">
+                                                
+                                            <option value="{{$instructor->branch_id}}">{{App\Branch::where('id',$instructor->branch_id)->first()->name}}
+                                            </option>
+                                        @foreach(App\Branch::all() as $branch)
+                                                
+                                                @if($instructor->branch_id !== $branch->id)
+                                                <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                                @endif
+                            @endforeach
+                            </select>
+                                        </div>
+                                    </div>
                                     <div class="b-form-row">
                                         <div class="b-form-horizontal__label"></div>
                                         <div class="b-form-horizontal__input">

@@ -97,11 +97,25 @@
                                 </div>
 
                                 <div class="b-form-row">
+                                    <label class="b-form-horizontal__label" for="create_account_email">Branch</label>
+                                    <div class="b-form-horizontal__input b-form-select c-arrow-secondary">
+                                        <select required="" class="j-select" name="branch_id">
+                                        <option value="">Please select beanch</option> 
+                                        @foreach(App\Branch::all() as $branch)
+                                        <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="img">Your CV: </label>
                                     <div class="b-form-horizontal__input">
                                         <input type="file" name="cv" id="cv" required="" class="btn btn-success btn-file" style=" height: 40px; width: 265px;" />
                                     </div>
                                 </div>
+
+                                
 
                                 <div class="b-form-row">
                                     <label class="b-form-horizontal__label" for="create_account_email">Your Photo</label>

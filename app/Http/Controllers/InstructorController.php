@@ -44,7 +44,7 @@ class InstructorController extends Controller
 
         $validator = $this->validate(request(), [
             'name' => 'string|min:2|max:255',
-            'email' => 'required|email|unique:instructors,email,'.$request->id,
+            'email' => 'required|email|unique:instructors,email,' . $request->id,
             'password' => 'min:6',
             'phone_number' => 'min:8',
             'cv' => 'mimes:pdf',
@@ -55,13 +55,14 @@ class InstructorController extends Controller
         $instructor = Instructor::where('email', $request->email)->first();
 
         if ($instructor) {
-           // $instructor->email = $request->email;
+            // $instructor->email = $request->email;
             $instructor->name = $request->name;
             $instructor->address = $request->address;
             $instructor->phone_number = $request->phone_number;
             $instructor->password = Hash::make($request->password);
+            $instructor->branch_id = $request->branch_id;
 
-           if (!is_null($request->file('cv'))) {
+            if (!is_null($request->file('cv'))) {
                 $file = $request->file('cv');
                 $filename = time() . '.' . $file->getClientOriginalName();
                 $path = 'uploads/cv';
@@ -74,7 +75,7 @@ class InstructorController extends Controller
                 $pathimg = 'img/instructors';
                 $fileimg->move($pathimg, $filenameimg);
                 $instructor->img = $filenameimg;
-            } 
+            }
             $instructor->update();
             return back()->with('success', ' Profile updated successfully');
         }
@@ -97,8 +98,10 @@ class InstructorController extends Controller
 
     public function delete_course($id)
     {
-        $crs = Course::find($id)->delete();
-        return redirect('/courses/index')->with(['success' => 'successfully deleted...']);
+        $crs = Course::find($id);
+        $id = $crs->instuctor_id;
+        $crs->delete();
+        return redirect('instructor/courses/' . $id)->with(['success' => 'successfully deleted...']);
     }
 
     public function update_course(Request $request)
@@ -115,10 +118,12 @@ class InstructorController extends Controller
         $course->discount = $request->discount;
         $course->seats = $request->seats;
         $file = $request->file('img');
-        $filename = time() . '.' . $file->getClientOriginalName();
-        $path = 'img/courses';
-        $file->move($path, $filename);
-        $course->img = $filename;
+        if ($file) {
+            $filename = time() . '.' . $file->getClientOriginalName();
+            $path = 'img/courses';
+            $file->move($path, $filename);
+            $course->img = $filename;
+        }
         $course->update();
 
         return back()->with('success', ' Course updated successfully.');

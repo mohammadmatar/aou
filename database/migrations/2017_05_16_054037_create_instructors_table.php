@@ -23,6 +23,8 @@ class CreateInstructorsTable extends Migration
             $table->string('password');
             $table->text('address');
             $table->string('cv');
+            $table->integer('branch_id')->unsigned()->index();
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->boolean('status')->default(0);
             $table->string('token', 254)->nullable();
             $table->rememberToken();

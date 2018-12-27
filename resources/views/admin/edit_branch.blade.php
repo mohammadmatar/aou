@@ -37,6 +37,17 @@
             </div>
         </div>
         @endif
+       @if (count($errors))
+    <div class="form-group">
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+    @endif
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="b-form">
@@ -67,15 +78,16 @@
                                     <label class="b-form-horizontal__label" for="create_account_email">Sub Admin</label>
                                     <div class="b-form-horizontal__input b-form-select c-arrow-secondary">
                                         <select required="" class="j-select" name="sub_admin_id">
-                                            @if($brn->sub_admin_id)
 
+                                            @if($brn->sub_admin_id)
                                             {{$branch = App\SubAdmin::where('id',$brn->sub_admin_id)->first()}}
                                             @if($branch)
                                           <option value="{{$brn->sub_admin_id}}">{{$branch->name}}</option>
                                             @endif
                                           @endif
-                                          <option value="">Please Select Branch Admin</option>
+                                            <option value=""></option>
                                            @foreach(App\SubAdmin::all() as $sub)
+                                        
                                             @if($sub->id !== $brn->sub_admin_id)
                                             <option value="{{$sub->id}}">{{$sub->name}}</option>
                                             @endif

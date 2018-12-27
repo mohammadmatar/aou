@@ -168,6 +168,12 @@ class AdminController extends Controller
 
     public function save_brn(Request $request)
     {
+        $validator = $this->validate(request(), [
+            'name' => 'required|string|min:2|max:255',
+            'location' => 'required|string|min:2|max:255',
+            'sub_admin_id' => 'required|string|min:1|max:255',
+        ]);
+
         $brn = new Branch();
         $brn->name = $request->name;
         $brn->location = $request->location;
@@ -202,19 +208,20 @@ class AdminController extends Controller
     {
         $instructor = Instructor::find($request->id);
         //$instructor = Instructor::where('email', $request->email)->first();
-        
+
         if ($instructor) {
             // $instructor->email = $request->email;
             $instructor->name = $request->name;
             $instructor->address = $request->address;
             $instructor->phone_number = $request->phone_number;
-            if (!is_null($request->file('cv'))) {
+            $instructor->branch_id = $request->branch_id;
+           /*  if (!is_null($request->file('cv'))) {
                 $file = $request->file('cv');
                 $filename = time() . '.' . $file->getClientOriginalName();
                 $path = 'uploads/cv';
                 $file->move($path, $filename);
                 $instructor->cv = $filename;
-            }
+            } */
             $instructor->update();
             return back()->with('success', ' Instructor updated successfully');
         }
@@ -240,13 +247,20 @@ class AdminController extends Controller
 
     public function ed_brn(Request $request)
     {
-        $brn = Branch::find($request->bid);
-        $brn->name = $request->name;
-        $brn->location = $request->location;
-        $brn->sub_admin_id = $request->sub_admin_id;
-        $brn->update();
-        return back()->with('success', ' Branch updated successfully');
-
+        $validator = $this->validate(request(), [
+            'name' => 'required|string|min:2|max:255',
+            'location' => 'required|string|min:2|max:255',
+            'sub_admin_id' => 'required|string|min:1|max:255',
+        ]);
+        if ($validator) {
+            $brn = Branch::find($request->bid);
+            $brn->name = $request->name;
+            $brn->location = $request->location;
+            $brn->sub_admin_id = $request->sub_admin_id;
+            $brn->update();
+            return back()->with('success', ' Branch updated successfully');
+        }
+        return back()->with($validator->errors);
     }
 
     public function update_profile(Request $request)
@@ -323,7 +337,6 @@ class AdminController extends Controller
         return view('admin.signs', compact(['pg', 'reqs']));
     }
 
-    
     public function login()
     {
         $pg = 0;
@@ -341,15 +354,15 @@ class AdminController extends Controller
 
     public function accept($id)
     {
-        $req = Arequest::find($id);
-        //dd($req);
-        $req->admin_status = 1;
-        $c = Course::find($req->course_id);
-        $c->status = 1;
-        $req->save();
-        $c->save();
-        return back();
-
+        $req = Srequest::find($id);
+        if ($req) {
+            $course = Course::find($req->course_id);
+            if ($course) {
+                $req->admin_status = 1;
+                $req->save();
+            }
+        }
+        return back()->with('success', 'Course successfully rejected');
     }
 
     public function accept_sign($id)
@@ -361,6 +374,7 @@ class AdminController extends Controller
         $instructor->email = $sign->email;
         $instructor->phone_number = $sign->phone_number;
         $instructor->address = $sign->address;
+        $instructor->branch_id = $sign->branch_id;
         $instructor->cv = $sign->cv;
         $instructor->img = $sign->img;
         $instructor->password = $sign->password;
@@ -382,13 +396,19 @@ class AdminController extends Controller
 
     public function refuse_course($id)
     {
+
         $req = Srequest::find($id);
-        $req->sub_status = 2;
-        $course = Course::find($req->course_id);
-        $course->status = 0;
-        $req->save();
-        $course->save();
-        return back();/* ->with('success','Course successfully rejected') */
+        if ($req) {
+            $course = Course::find($req->course_id);
+            if ($course) {
+                $req->admin_status = 2;
+                $req->sub_status = 2;
+                $course->status = 2;
+                $req->save();
+                $course->save();
+            }
+        }
+        return back()->with('success','Course successfully rejected');
     }
 
     public function check_login(Request $request)

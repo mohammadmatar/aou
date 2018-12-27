@@ -43,7 +43,7 @@ Sub Admins | AOU
                 <th>ID</th>
                 <th>Name</th>
                 <th>Address</th>
-                <th>Branch</th>
+                <th>Branch(s)</th>
                 <th>Edit</th>
                 <th>Delete</th>
               </tr>
@@ -53,8 +53,11 @@ Sub Admins | AOU
                 <td>{{$sub->id}}</td>
                 <td><a href="{{url('/sub/profile',['id'=>$sub->id])}}">{{$sub->name}}</a></td>
                 <td>{{$sub->address}}</td>
-                <td>@if(!empty(App\Branch::where('sub_admin_id',$sub->id)->first()->name))
-                  {{App\Branch::where('sub_admin_id',$sub->id)->first()->name}}
+                <td>@if(!empty($branch = App\Branch::where('sub_admin_id',$sub->id)->get()))
+                  @foreach($branch as $branch)
+                      {{$branch->name}},
+                  @endforeach
+               
                 @endif</td>
                 
                 <td><a href="{{url('admin/subedit',['id'=>$sub->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a></td>

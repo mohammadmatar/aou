@@ -80,18 +80,21 @@ My Courses | AOU
           <div class="b-some-examples__item_action">
            
             <div class="b-right">
-                <a href="{{url('course/edit',['id'=>$course->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                <a href="{{url('course/delete',['id'=>$course->id])}}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+          
 
                 @if($course->status==1)
                       <span class="button-sm button-green-bright"><i class="fa fa-check"></i> accepted</span>
+                      <a href="{{url('course/edit',['id'=>$course->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                            <a href="{{url('course/delete',['id'=>$course->id])}}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
                   @endif
                   @if($course->status==0)
                       <span class="button-sm button-turquoise"><i class="fa fa-spinner fa-spin"></i> pending</span>
+                      <a href="{{url('course/edit',['id'=>$course->id])}}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                            <a href="{{url('course/delete',['id'=>$course->id])}}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
                   @endif
                   @if($course->status==2)
-                  
                       <span class="button-sm button-red"><i class="fa fa-ban fa-ban"></i> Refused</span>
+                            <a href="{{url('course/delete',['id'=>$course->id])}}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
                   @endif
 
 

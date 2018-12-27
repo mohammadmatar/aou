@@ -78,6 +78,7 @@ class SiteController extends Controller
         if ($validator) {
 
             $sign = new Sign();
+            $sign->branch_id = $request->branch_id;
             $sign->name = $request->name;
             $sign->instructor_id = $request->instructor_id;
             $sign->address = $request->address;
